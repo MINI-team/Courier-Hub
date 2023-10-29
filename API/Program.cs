@@ -22,4 +22,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+Console.WriteLine("Hello from Windows");
 app.Run();
