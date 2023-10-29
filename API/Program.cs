@@ -23,4 +23,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 Console.WriteLine("Hello from Windows");
+Console.WriteLine("Hello from Mac on feature-test-mac branch");
 app.Run();
