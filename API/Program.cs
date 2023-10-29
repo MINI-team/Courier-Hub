@@ -24,4 +24,5 @@ app.MapControllers();
 
 Console.WriteLine("Hello from Windows");
 Console.WriteLine("Hello from Mac on feature-test-mac branch");
+Console.WriteLine("Hello from Windows on feature-test-windows branch");
 app.Run();
