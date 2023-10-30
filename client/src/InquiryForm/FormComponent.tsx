@@ -26,6 +26,7 @@ class FormComponent extends React.Component<{}, IState> {
 
   render() {
     return (
+      <div style={{paddingLeft: '5%'}}>
       <Form>
         <h2>Basic information</h2>
         <Form.Group>
@@ -97,6 +98,7 @@ class FormComponent extends React.Component<{}, IState> {
 
         <Form.Button>Submit</Form.Button>
       </Form>
+      </div>
     )
   }
 }
