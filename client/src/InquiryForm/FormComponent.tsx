@@ -1,6 +1,6 @@
 import axios from 'axios';
-import React, { ChangeEvent, Component } from 'react'
-import { Form, CheckboxProps, Grid, Container } from 'semantic-ui-react'
+import React, { ChangeEvent } from 'react'
+import { Form, CheckboxProps } from 'semantic-ui-react'
 
 interface IState {
   // width?: number;
@@ -23,10 +23,12 @@ class FormComponent extends React.Component<{}, IState> {
     deliveredOnWeekend: false
   };
 
+  // @ts-ignore
   handleChangePriority = (e: React.SyntheticEvent, data: CheckboxProps) => {
     this.setState({ priority: data.value as string });
   };
 
+  // @ts-ignore
   handleChangeWeekend = (e: React.SyntheticEvent, data: CheckboxProps) => {
     this.setState({ deliveredOnWeekend: !this.state.deliveredOnWeekend });
   };
@@ -34,6 +36,7 @@ class FormComponent extends React.Component<{}, IState> {
   handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target;
     this.setState({[name]: value});
+    // @ts-ignore
     console.log(`${name} is ${this.state[name]}`);
     console.log(this.state);
   }
@@ -54,6 +57,7 @@ class FormComponent extends React.Component<{}, IState> {
   }
 
   addOffer(offer: {price: number}) {
+    // @ts-ignore
     this.setState((prevState) => ({
       offers: [...prevState.offers, offer.price]
     }));
