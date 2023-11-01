@@ -1,9 +1,6 @@
 import {Checkbox, Form } from 'semantic-ui-react'
-import React from "react";
-import { IClient } from '../models/client';
-import { IAddress } from '../models/address';
 
-class SignUpFormComponent extends React.Component<{}, IClient> {
+/*class SignUpFormComponent extends React.Component<{}, IClient> {
     address: IAddress = {
         streetName: "",
         streetNo: 0,
@@ -19,11 +16,11 @@ class SignUpFormComponent extends React.Component<{}, IClient> {
         password: "",
         address: this.address
     };
-}
+}*/
 
 function SignUpFormComponent(){
     return(<div>
-        <Form onSubmit={this.handleSubmit}>
+        <Form>
             <h2>Basic information</h2>
             <Form.Group>
                 <Form.Input fluid label='First name' placeholder='Elon' width={4}  required/>

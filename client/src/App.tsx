@@ -3,6 +3,7 @@ import './App.css';
 import LandingPage from './LandigPage/LandingPage';
 import FormComponent from './InquiryForm/FormComponent';
 import LoginFormComponent from './LogInForm/LogInFormComponent';
+import SignUpFormComponent from './SignUpForm/SignUpFormComponent';
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route path="/form" component={FormComponent} />
-        <Route path="/login" component={LoginFormComponent} /> {}
+        <Route path="/login" component={LoginFormComponent} /> 
+        <Route path="/register" component={SignUpFormComponent} /> {}
         <Redirect to="/" />
       </Switch>
     </Router>
