@@ -1,5 +1,7 @@
 import './App.css'
-import FormComponent from './InquiryForm/FormComponent'
+//import LogInFormComponent from './LogInForm/LogInFormComponent'
+//import FormComponent from './InquiryForm/FormComponent'
+import SignUpFormComponent from './SignUpForm/SignUpFormComponent'
 
 function App() {
   return (
@@ -7,7 +9,7 @@ function App() {
       <div>
         <h1>CourierHub</h1>
       </div>
-      <FormComponent />
+      <SignUpFormComponent />
     </div>
   )
 }
