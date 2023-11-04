@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { CheckboxProps, Form } from 'semantic-ui-react'
+import { Button, CheckboxProps, Form } from 'semantic-ui-react'
 import { IInquiry, getEmptyInquiry } from '../models/inquiry';
 
 interface Props {
@@ -29,7 +29,7 @@ export default function FormComponent2({inquiry: passedInquiry}: Props){
 
     return (
     <div>
-        <button onClick={() => setEdit(true)}>Edit inquiry info</button>
+        <Button color="facebook" onClick={() => setEdit(true)}>Edit inquiry info</Button>
         <Form>
             <h2>Basic information</h2>
             <Form.Group>

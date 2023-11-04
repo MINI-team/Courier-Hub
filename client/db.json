@@ -77,6 +77,100 @@
         "id": 1
       },
       "id": 4
+    },
+    {
+      "info": {},
+      "inquiry": {
+        "submitted": false,
+        "offers": [],
+        "priority": "high",
+        "deliveredOnWeekend": true,
+        "width": "99",
+        "height": "88",
+        "weight": "77",
+        "date": "2023-11-12",
+        "sourceStreetName": "Bogatki",
+        "sourceStreetNumber": "17",
+        "sourceZipCode": "02-837",
+        "sourceCity": "Warszawa",
+        "destinationStreetName": "Bogatki",
+        "destinationStreetNumber": "17",
+        "destinationZipCode": "02-837",
+        "destinationCity": "Warszawa",
+        "id": 1
+      },
+      "id": 5
+    },
+    {
+      "info": {},
+      "inquiry": {
+        "submitted": false,
+        "offers": [],
+        "priority": "high",
+        "deliveredOnWeekend": true,
+        "width": "99",
+        "height": "88",
+        "weight": "77",
+        "date": "2023-11-12",
+        "sourceStreetName": "Bogatki",
+        "sourceStreetNumber": "17",
+        "sourceZipCode": "02-837",
+        "sourceCity": "Warszawa",
+        "destinationStreetName": "Bogatki",
+        "destinationStreetNumber": "17",
+        "destinationZipCode": "02-837",
+        "destinationCity": "Warszawa",
+        "id": 1
+      },
+      "id": 6
+    },
+    {
+      "info": {},
+      "inquiry": {
+        "submitted": false,
+        "offers": [],
+        "priority": "high",
+        "deliveredOnWeekend": true,
+        "width": "99",
+        "height": "88",
+        "weight": "77",
+        "date": "2023-11-12",
+        "sourceStreetName": "Bogatki",
+        "sourceStreetNumber": "17",
+        "sourceZipCode": "02-837",
+        "sourceCity": "Warszawa",
+        "destinationStreetName": "Bogatki",
+        "destinationStreetNumber": "17",
+        "destinationZipCode": "02-837",
+        "destinationCity": "Warszawa",
+        "id": 1
+      },
+      "id": 7
+    },
+    {
+      "info": {
+        "first_name": "baran"
+      },
+      "inquiry": {
+        "submitted": false,
+        "offers": [],
+        "priority": "high",
+        "deliveredOnWeekend": true,
+        "width": "99",
+        "height": "88",
+        "weight": "77",
+        "date": "2023-11-12",
+        "sourceStreetName": "Bogatki",
+        "sourceStreetNumber": "17",
+        "sourceZipCode": "02-837",
+        "sourceCity": "Warszawa",
+        "destinationStreetName": "Bogatki",
+        "destinationStreetNumber": "17",
+        "destinationZipCode": "02-837",
+        "destinationCity": "Warszawa",
+        "id": 1
+      },
+      "id": 8
     }
   ]
 }
