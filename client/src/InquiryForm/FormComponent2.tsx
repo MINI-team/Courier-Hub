@@ -1,28 +1,53 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { Form } from 'semantic-ui-react'
 import { IInquiry } from '../models/inquiry';
 
 interface Props {
     inquiry: IInquiry | undefined;
+    test: string;
 }
 
-export default function FormComponent2({inquiry: passedInquiry}: Props){
+export default function FormComponent2({inquiry: passedInquiry, test: test1}: Props){
     const initialState = passedInquiry || {
-        width: '111',
-        height: '999'
+        width: 'Form initial',
+        height: 'Form initial'
     }
 
-    const [inquiry, setInquiry] = useState(initialState);
-    const [width, setWidth] = useState('1');
+    const [inquiry, setInquiry] = useState<IInquiry>(initialState);
+    const [test, setTest] = useState(test1);
+
+    useEffect(() => {
+        console.log(`useEffect (in form2)`);
+        console.log('Inquiry from state:');
+        console.log(inquiry);
+        console.log('Inquiry from props:');
+        console.log(initialState);
+        console.log('Test from state:');
+        console.log(test);
+
+        // setInquiry(initialState);
+      }, [inquiry, initialState]);
+      
+    // const [width, setWidth] = useState('1');
 
     function handleSubmit() {
         // createOrEdit(activity);
     }
 
+    function displayInfo(){
+        console.log(`Inquiry from state: `);
+        var inq = inquiry
+        console.log(inq);
+        console.log(`Inquiry from props: `);
+        console.log(initialState);
+        console.log(`Test from state: `);
+        console.log(test);
+    }
+
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
         const { name, value } = event.target;
         setInquiry({ ...inquiry, [name]: value });
-        console.log(`Width (from width) is ${width}`)
+        // console.log(`Width (from width) is ${width}`)
         console.log(`Width (from inquiry) is ${inquiry.width}`)
         console.log(`Width (from initialState) is ${initialState.width}`)
     }
@@ -30,9 +55,14 @@ export default function FormComponent2({inquiry: passedInquiry}: Props){
     return (
     <Form onSubmit={handleSubmit}>
         <h2>Basic information</h2>
+        <h2>{test}</h2>
+        <h2>{test1}</h2>
+        <h2>{initialState.width}</h2>
+        <h2>{inquiry.width}</h2>
+        <button onClick={displayInfo}>Show info about inquiry from props</button>
         <Form.Group>
-            <Form.Input fluid type='number' label='Width (cm)' placeholder='0' width={2} name="width" value={width} onChange={e => setWidth(e.target.value)}/>
-            {/* <Form.Input fluid label='Width (cm)' placeholder='0' width={2} name="width" value={inquiry.width} onChange={handleInputChange}/> */}
+            {/* <Form.Input fluid type='number' label='Width (cm)' placeholder='0' width={2} name="width" value={width} onChange={e => setWidth(e.target.value)}/> */}
+            <Form.Input fluid label='Width (cm)' placeholder='0' width={2} name="width" value={inquiry.width} onChange={handleInputChange}/>
             <Form.Input fluid label='Height (cm)' placeholder='0' width={2} name="height" value={inquiry.height} onChange={handleInputChange}/>
         </Form.Group>
         {/* <Form.Group>
@@ -93,6 +123,6 @@ export default function FormComponent2({inquiry: passedInquiry}: Props){
         <Form.Button>Submit</Form.Button> */}
     </Form>
     )
-    }
+}
 
 // export default FormComponent2
