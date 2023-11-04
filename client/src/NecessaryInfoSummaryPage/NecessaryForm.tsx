@@ -15,10 +15,10 @@ export default function FormComponent2(){
     <Form>
       <h2>Basic information</h2>
       <Form.Group>
-        <Form.Input fluid label='First name' placeholder='Jan' width={2} name="first_name" onChange={handleInputChange}/>
-        <Form.Input fluid label='Last name' placeholder='Kowalski' width={2} name="last_name" onChange={handleInputChange}/>
+        <Form.Input fluid label='First name' placeholder='Jan' width={4} name="first_name" onChange={handleInputChange}/>
+        <Form.Input fluid label='Last name' placeholder='Kowalski' width={4} name="last_name" onChange={handleInputChange}/>
       </Form.Group>
-      <Form.Input fluid label='E-mail' placeholder='kowalski@example.com' width={2} name="email" onChange={handleInputChange}/>
+      <Form.Input fluid label='E-mail' placeholder='kowalski@example.com' width={6} name="email" onChange={handleInputChange}/>
       <h2>Address</h2>
       <Form.Group>
         <Form.Input fluid label='Street name' placeholder='Przykładowa' width={6} name="sourceStreetName" onChange={handleInputChange}/>
