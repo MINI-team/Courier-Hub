@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { ChangeEvent } from 'react'
+import { useHistory } from 'react-router-dom';
 import { Form, CheckboxProps } from 'semantic-ui-react'
 
 interface IState {
@@ -23,6 +24,11 @@ class FormComponent extends React.Component<{}, IState> {
     deliveredOnWeekend: false
   };
 
+  // history = useHistory();
+  
+  // goToSummary = () => {
+  //   // history.push('/summary');
+  // };
   // @ts-ignore
   handleChangePriority = (e: React.SyntheticEvent, data: CheckboxProps) => {
     this.setState({ priority: data.value as string });
@@ -71,6 +77,7 @@ class FormComponent extends React.Component<{}, IState> {
           <div style={{marginTop: '10%'}}>
             <h1>Form submitted</h1>
             <h1>{this.state.offers?.map(offer => <li>{offer}</li>)}</h1>
+            {/* <button onClick={this.goToSummary}></button> */}
           </div>
           :
         <div style={{paddingLeft: '5%'}}>

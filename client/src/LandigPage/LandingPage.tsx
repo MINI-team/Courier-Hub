@@ -12,9 +12,9 @@ const LandingPage = () => {
     history.push('/login');
   };
 
-    const goToRegister = () => {
-        history.push('/register');
-    };
+  const goToRegister = () => {
+      history.push('/register');
+  };
 
   return (
     <div className="landing-container">
