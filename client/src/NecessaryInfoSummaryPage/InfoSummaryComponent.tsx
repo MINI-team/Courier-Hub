@@ -15,6 +15,11 @@ function InfoSummaryComponent(this: any){
       console.log(`${name} changed to ${value}`);
   }
 
+  function handleSubmit() {
+    console.log(info);
+    axios.post("http://localhost:5000/orders", {info, inquiry});
+  }
+
   useEffect(() => {
     axios.get("http://localhost:5000/inquiries").then(response => 
     {
@@ -25,7 +30,7 @@ function InfoSummaryComponent(this: any){
 
   return(
     <div style={{paddingLeft: '5%'}}>
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <h2>Basic information</h2>
       <Form.Group>
         <Form.Input fluid label='First name' placeholder='Jan' width={4} name="first_name" onChange={handleInputChange}/>
@@ -42,8 +47,12 @@ function InfoSummaryComponent(this: any){
         <Form.Input fluid label='Zip code' placeholder='00-000' width={2} name="sourceZipCode" onChange={handleInputChange}/>
         <Form.Input fluid label='City' placeholder='Warszawa' width={2} name="sourceCity" onChange={handleInputChange}/>
       </Form.Group>
+      <Form.Button>Submit</Form.Button>
+      <h1>Summary:</h1>
+      {renderSummary ? <FormComponent2 inquiry={inquiry}></FormComponent2> : <></>}
     </Form>
-    {renderSummary ? <FormComponent2 inquiry={inquiry}></FormComponent2> : <></>}
+
+
     </div>
   )
 }
