@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Domain
 {
     public class Offer
     {
-        
+        public string CompanyName { get; set; }
+        public float Price { get; set; }
     }
 }
