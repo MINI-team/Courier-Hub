@@ -5,6 +5,7 @@ import FormComponent from './InquiryForm/FormComponent';
 import LoginFormComponent from './LogInForm/LogInFormComponent';
 import SignUpFormComponent from './SignUpForm/SignUpFormComponent';
 import InfoSummaryComponent from './NecessaryInfoSummaryPage/InfoSummaryComponent';
+import MyOrdersComponent from './MyOrders/MyOrdersComponent';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route exact path="/" component={LandingPage} />
         <Route path="/form" component={FormComponent} />
         <Route path="/summary" component={InfoSummaryComponent} />
+        <Route path="/orders" component={MyOrdersComponent} />
         <Route path="/login" component={LoginFormComponent} /> 
         <Route path="/register" component={SignUpFormComponent} /> {}
         <Redirect to="/" />

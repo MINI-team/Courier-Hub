@@ -1,4 +1,4 @@
-export interface IInquiry{
+export interface IOrder{
     width?: number;
     height?: number;
     weight?: number;
@@ -21,14 +21,17 @@ export interface IInquiry{
     priority?: string;
     deliveredOnWeekend?: boolean;
 
-    id?: number;
-}
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    streetName?: string;
+    streetNumber?: string;
+    flatNumber?: string;
+    zipCode?: string;
+    city?: string;
 
-export function getEmptyInquiry (){
-    const inquiry = 
-    {
-        width: undefined,
-        height: undefined,
-    }
-    return inquiry;
+    companyName?: string;
+    price?: number;
+
+    id?: number;
 }
