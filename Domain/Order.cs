@@ -4,7 +4,7 @@ namespace Domain
     {
         public Guid Id { get; set; }
         public Inquiry InquiryInfo { get; set; }
-        public Offer OfferInfo { get; set; }
-        public NecessaryInfo NecessaryInfo { get; set; }
+        public string CompanyName { get; set; }
+        public float Price { get; set; }
     }
 }
