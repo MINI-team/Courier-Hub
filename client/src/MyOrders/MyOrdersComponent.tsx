@@ -8,8 +8,10 @@ function MyOrdersComponent(this: any){
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/orders").then(response => 
+        var endPnt = "http://localhost:5147/api/Order"; //"http://localhost:5000/orders";
+        axios.get(endPnt).then(response => 
         {
+            console.log(response.data)
             setOrders(response.data);
             setLoaded(true);
         });
