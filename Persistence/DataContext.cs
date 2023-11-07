@@ -9,5 +9,8 @@ namespace Persistence
         {
         }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Inquiry> Inquiries { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Client> Clients { get; set; }
     }
 }

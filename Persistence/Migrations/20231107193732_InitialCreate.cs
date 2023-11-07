@@ -12,48 +12,71 @@ namespace Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: "Addresses",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     StreetName = table.Column<string>(type: "TEXT", nullable: false),
                     StreetNo = table.Column<int>(type: "INTEGER", nullable: false),
-                    FlatNo = table.Column<int>(type: "INTEGER", nullable: false),
+                    FlatNo = table.Column<int>(type: "INTEGER", nullable: true),
                     ZipCode = table.Column<string>(type: "TEXT", nullable: false),
                     City = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Address", x => x.Id);
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Inquiry",
+                name: "Client",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Width = table.Column<float>(type: "REAL", nullable: false),
-                    Height = table.Column<float>(type: "REAL", nullable: false),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
+                    LastName = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Login = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
+                    AddrId = table.Column<Guid>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Client", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Client_Addresses_AddrId",
+                        column: x => x.AddrId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Inquiries",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Width = table.Column<int>(type: "INTEGER", nullable: false),
+                    Height = table.Column<int>(type: "INTEGER", nullable: false),
                     Weight = table.Column<int>(type: "INTEGER", nullable: false),
                     Date = table.Column<DateOnly>(type: "TEXT", nullable: false),
                     SourceAddressId = table.Column<Guid>(type: "TEXT", nullable: false),
                     DestinationAddressId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    priority = table.Column<string>(type: "TEXT", nullable: false),
+                    Priority = table.Column<string>(type: "TEXT", nullable: false),
                     DeliveredOnWeekend = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Inquiry", x => x.Id);
+                    table.PrimaryKey("PK_Inquiries", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Inquiry_Address_DestinationAddressId",
+                        name: "FK_Inquiries_Addresses_DestinationAddressId",
                         column: x => x.DestinationAddressId,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Inquiry_Address_SourceAddressId",
+                        name: "FK_Inquiries_Addresses_SourceAddressId",
                         column: x => x.SourceAddressId,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -63,30 +86,47 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ClientId = table.Column<Guid>(type: "TEXT", nullable: false),
                     InquiryInfoId = table.Column<Guid>(type: "TEXT", nullable: false),
                     CompanyName = table.Column<string>(type: "TEXT", nullable: false),
-                    Price = table.Column<float>(type: "REAL", nullable: false)
+                    Price = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Inquiry_InquiryInfoId",
+                        name: "FK_Orders_Client_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Client",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Inquiries_InquiryInfoId",
                         column: x => x.InquiryInfoId,
-                        principalTable: "Inquiry",
+                        principalTable: "Inquiries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Inquiry_DestinationAddressId",
-                table: "Inquiry",
+                name: "IX_Client_AddrId",
+                table: "Client",
+                column: "AddrId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Inquiries_DestinationAddressId",
+                table: "Inquiries",
                 column: "DestinationAddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Inquiry_SourceAddressId",
-                table: "Inquiry",
+                name: "IX_Inquiries_SourceAddressId",
+                table: "Inquiries",
                 column: "SourceAddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_ClientId",
+                table: "Orders",
+                column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_InquiryInfoId",
@@ -101,10 +141,13 @@ namespace Persistence.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Inquiry");
+                name: "Client");
 
             migrationBuilder.DropTable(
-                name: "Address");
+                name: "Inquiries");
+
+            migrationBuilder.DropTable(
+                name: "Addresses");
         }
     }
 }

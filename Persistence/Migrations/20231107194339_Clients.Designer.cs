@@ -11,8 +11,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231105225020_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231107194339_Clients")]
+    partial class Clients
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,7 +30,7 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("FlatNo")
+                    b.Property<int?>("FlatNo")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("StreetName")
@@ -46,7 +46,43 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
+                });
+
+            modelBuilder.Entity("Domain.Client", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("AddrId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddrId");
+
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("Domain.Inquiry", b =>
@@ -64,8 +100,12 @@ namespace Persistence.Migrations
                     b.Property<Guid>("DestinationAddressId")
                         .HasColumnType("TEXT");
 
-                    b.Property<float>("Height")
-                        .HasColumnType("REAL");
+                    b.Property<int>("Height")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Priority")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid>("SourceAddressId")
                         .HasColumnType("TEXT");
@@ -73,12 +113,8 @@ namespace Persistence.Migrations
                     b.Property<int>("Weight")
                         .HasColumnType("INTEGER");
 
-                    b.Property<float>("Width")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("priority")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Width")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -86,13 +122,16 @@ namespace Persistence.Migrations
 
                     b.HasIndex("SourceAddressId");
 
-                    b.ToTable("Inquiry");
+                    b.ToTable("Inquiries");
                 });
 
             modelBuilder.Entity("Domain.Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ClientId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CompanyName")
@@ -102,14 +141,27 @@ namespace Persistence.Migrations
                     b.Property<Guid>("InquiryInfoId")
                         .HasColumnType("TEXT");
 
-                    b.Property<float>("Price")
+                    b.Property<double>("Price")
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId");
+
                     b.HasIndex("InquiryInfoId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Domain.Client", b =>
+                {
+                    b.HasOne("Domain.Address", "Addr")
+                        .WithMany()
+                        .HasForeignKey("AddrId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Addr");
                 });
 
             modelBuilder.Entity("Domain.Inquiry", b =>
@@ -133,11 +185,19 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Order", b =>
                 {
+                    b.HasOne("Domain.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Inquiry", "InquiryInfo")
                         .WithMany()
                         .HasForeignKey("InquiryInfoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Client");
 
                     b.Navigation("InquiryInfo");
                 });

@@ -8,6 +8,6 @@ public class Inquiry
     public DateOnly Date { get; set; }
     public Address SourceAddress { get; set; }
     public Address DestinationAddress { get; set; }
-    public string priority { get; set; }
+    public string Priority { get; set; }
     public bool DeliveredOnWeekend { get; set; }
 }
