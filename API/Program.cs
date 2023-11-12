@@ -1,3 +1,4 @@
+using Application.Orders;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -22,6 +23,7 @@ builder.Services.AddCors(opt =>
         "http://localhost:5173", "https://localhost:5173");
     });
 });
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(List.Handler).Assembly));
 
 var app = builder.Build();
 
