@@ -1,12 +1,15 @@
-﻿namespace Domain;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
+
+namespace Domain;
 
 public class Client
 {
     public Guid Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string Email { get; set; }
-    public string Login { get; set; }
-    public string Password { get; set; }
-    public Address Addr { get; set; }
+    public required string Email { get; set; }
+    public required string FirstName { get; set; }
+    public required string LastName { get; set;}
+    //public string? Sub { get; set; }
+    public Address? Addr { get; set; }
+    public Address? SourceAddr { get; set; }
 }
