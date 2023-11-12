@@ -25,8 +25,8 @@ function MyOrdersComponent(this: any){
                         <Item.Content>
                             <Item.Header>{order.companyName}   {order.price?.toFixed(2)} zł</Item.Header>
                             <Item.Description>
-                                <div>{order.width}x{order.height} cm</div>
-                                <div>{order.weight} g</div>
+                                <div>{order!.inquiryInfo!.width}x{order!.inquiryInfo!.height} cm</div>
+                                <div>{order!.inquiryInfo!.weight} g</div>
                             </Item.Description>
                         </Item.Content>
                     </Item>

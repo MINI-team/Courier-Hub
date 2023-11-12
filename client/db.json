@@ -130,6 +130,25 @@
       "destinationZipCode": "02-837",
       "destinationCity": "Warszawa",
       "id": 7
+    },
+    {
+      "submitted": false,
+      "offers": [],
+      "priority": "low",
+      "deliveredOnWeekend": false,
+      "width": "6666",
+      "height": "6889",
+      "weight": "99999",
+      "date": "2023-11-30",
+      "sourceStreetName": "Bogatki",
+      "sourceStreetNumber": "17",
+      "sourceZipCode": "02-837",
+      "sourceCity": "Warszawa",
+      "destinationStreetName": "Bogatki",
+      "destinationStreetNumber": "17",
+      "destinationZipCode": "02-837",
+      "destinationCity": "Warszawa",
+      "id": 8
     }
   ],
   "orders": [
@@ -324,6 +343,27 @@
       "companyName": "Company A",
       "price": 4.81119952192407,
       "id": 7
+    },
+    {
+      "submitted": false,
+      "offers": [],
+      "priority": "high",
+      "deliveredOnWeekend": false,
+      "width": "11",
+      "height": "45",
+      "weight": "34",
+      "date": "2023-11-10",
+      "sourceStreetName": "Bogatki",
+      "sourceStreetNumber": "17",
+      "sourceZipCode": "02-837",
+      "sourceCity": "Warszawa",
+      "destinationStreetName": "Bogatki",
+      "destinationStreetNumber": "17",
+      "destinationZipCode": "02-837",
+      "destinationCity": "Warszawa",
+      "companyName": "Company A",
+      "price": 4.038794778817927,
+      "id": 8
     }
   ]
 }

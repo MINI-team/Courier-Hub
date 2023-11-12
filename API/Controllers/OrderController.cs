@@ -20,7 +20,10 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Order>>> GetOrders()
         {
-            return await _context.Orders.ToListAsync();
+            return await _context.Orders
+            .Include(o => o.Client)
+            .Include(o => o.InquiryInfo)
+            .ToListAsync();
         }
 
         [HttpGet("{id}")]
@@ -28,5 +31,20 @@ namespace API.Controllers
         {
             return await _context.Orders.FindAsync(id);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Order>> CreateOrder(Order order)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Orders.Add(order);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction("GetOrder", new { id = order.Id }, order);
+            }
+
+            return BadRequest(ModelState);
+        }
+
     }
 }
