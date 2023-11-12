@@ -20,6 +20,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Order>>> GetOrders()
         {
+            Console.WriteLine("Hello get---------------------------------------------------------------------------------------");
             return await _context.Orders
             .Include(o => o.Client)
             .Include(o => o.InquiryInfo)
@@ -35,6 +36,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Order>> CreateOrder(Order order)
         {
+            Console.WriteLine("Hello post---------------------------------------------------------------------------------------");
             if (ModelState.IsValid)
             {
                 _context.Orders.Add(order);

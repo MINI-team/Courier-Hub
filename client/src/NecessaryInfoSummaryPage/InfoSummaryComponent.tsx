@@ -15,38 +15,24 @@ interface Props{
 function InfoSummaryComponent(){
 // function InfoSummaryComponent({companyName, price}: Props){
   const [order, setOrder] = useState({
-    companyName: 'ABC Inc.',
-    price: 100.50,
+    companyName: 'string',
+    price: 0,
     client: {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@example.com',
-      login: 'johndoe',
-      password: 'securepassword',
+      firstName: 'string',
+      lastName: 'string',
+      email: 'string',
+      login: 'string',
+      password: 'string',
       addr: {
-        street: '123 Main St',
-        city: 'Anytown',
-        state: 'CA',
+        streetName: 'string',
+        streetNo: 0,
+        flatNo: 0,
+        zipCode: 'string',
+        city: 'string',
       },
     },
-    inquiryInfo: {
-      width: 10,
-      height: 20,
-      weight: 5,
-      date: '2023-11-15', // Example date format, adjust according to your needs
-      sourceAddress: {
-        street: '456 Elm St',
-        city: 'Another Town',
-        state: 'NY',
-      },
-      destinationAddress: {
-        street: '789 Oak St',
-        city: 'Yet Another Town',
-        state: 'TX',
-      },
-      priority: 'High',
-      deliveredOnWeekend: false,
-    }
+    // Set inquiryInfoId to the existing InquiryInfo ID
+    inquiryInfoId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
   });
   const [info, setInfo] = useState({});
   const [inquiry, setInquiry] = useState<IInquiry | undefined>(undefined);
@@ -65,7 +51,12 @@ function InfoSummaryComponent(){
     // let order: IOrder = {"client": {}, "inquiryInfo": inquiry!, "companyName": "Company A", "price": Math.random()*10}
     // console.log(`Posting ${inquiry?.weight} ${inquiry?.height}`);
     // axios.post("http://localhost:5147/api/Order", {...info, inquiry1, "CompanyName": "Company A", "Price": Math.random()*10})
-    axios.post("http://localhost:5147/api/Order", order)
+    axios.post('http://localhost:5147/api/Order', order, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'text/plain',
+      },
+    })
     .then( response => console.log(`aaa ${response.data}`));
     history.replace('/orders');
   }
@@ -74,6 +65,10 @@ function InfoSummaryComponent(){
     axios.get("http://localhost:5000/inquiries").then(response => 
     {
       setInquiry(response.data[response.data.length - 1]);
+      setOrder((prevOrder) => ({
+        ...prevOrder,
+        inquiryInfo: response.data,
+      }));
       setRenderSummary(true);
     });
   }, []);
