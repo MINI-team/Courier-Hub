@@ -11,7 +11,8 @@ interface Props{
   price: number;
 }
 
-function InfoSummaryComponent({companyName, price}: Props){
+function InfoSummaryComponent(){
+// function InfoSummaryComponent({companyName, price}: Props){
   const [info, setInfo] = useState({});
   const [inquiry, setInquiry] = useState<IInquiry | undefined>(undefined);
   const [renderSummary, setRenderSummary] = useState(false);
@@ -25,7 +26,8 @@ function InfoSummaryComponent({companyName, price}: Props){
 
   function handleSubmit() {
     console.log(info);
-    let {id: _, ...inquiry1} = inquiry; 
+    let {id: _, ...inquiry1} = inquiry!;
+    console.log(`Posting ${inquiry?.weight} ${inquiry?.height}`);
     axios.post("http://localhost:5000/orders", {...info, ...inquiry1, "companyName": "Company A", "price": Math.random()*10})
     .then( response => console.log(`aaa ${response.data}`));
     history.replace('/orders');

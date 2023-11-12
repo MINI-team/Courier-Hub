@@ -6,6 +6,7 @@ namespace Persistence
     {
         public static void ClearData(DataContext context)
         {
+            Console.WriteLine("Clearing data---------------------------------------------------------------------------");
             var _context = context;
             var allOrders = _context.Orders.ToList();
             _context.Orders.RemoveRange(allOrders);
@@ -27,8 +28,9 @@ namespace Persistence
         }
         public static async Task SeedData(DataContext context)
         {
+            Console.WriteLine("Seeding data---------------------------------------------------------------------------");
             if(context.Orders.Any() || context.Inquiries.Any() || context.Addresses.Any()) return;
-
+            Console.WriteLine("Actually Seeding data---------------------------------------------------------------------------");
             var addresses = new List<Address>();
             var clients = new List<Client>();
             var inquiries = new List<Inquiry>();
@@ -104,6 +106,7 @@ namespace Persistence
             await context.Addresses.AddRangeAsync(addresses);
             await context.Clients.AddRangeAsync(clients);
             await context.Inquiries.AddRangeAsync(inquiries);
+            // await context.SaveChangesAsync();
             await context.Orders.AddRangeAsync(orders);
 
             await context.SaveChangesAsync();
