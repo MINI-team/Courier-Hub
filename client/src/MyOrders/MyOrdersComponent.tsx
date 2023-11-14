@@ -1,13 +1,14 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { Form, Item } from "semantic-ui-react";
 import axios from "axios";
-import { IOrder } from "../models/order";
+import { IOrder, IOrderDisplay } from "../models/order";
 
 function MyOrdersComponent(this: any){
-    const [orders, setOrders] = useState<IOrder[]>([]);
+    const [orders, setOrders] = useState<IOrderDisplay[]>([]);
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
+        console.log("useEffect")
         var endPnt = "http://localhost:5147/api/Order"; //"http://localhost:5000/orders";
         axios.get(endPnt).then(response => 
         {
@@ -25,8 +26,8 @@ function MyOrdersComponent(this: any){
                         <Item.Content>
                             <Item.Header>{order.companyName}   {order.price?.toFixed(2)} zł</Item.Header>
                             <Item.Description>
-                                <div>{order!.inquiryInfo!.width}x{order!.inquiryInfo!.height} cm</div>
-                                <div>{order!.inquiryInfo!.weight} g</div>
+                                <div>{order!.inquiry!.width}x{order!.inquiry!.height} cm</div>
+                                <div>{order!.inquiry!.weight} g</div>
                             </Item.Description>
                         </Item.Content>
                     </Item>

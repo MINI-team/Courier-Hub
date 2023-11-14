@@ -9,7 +9,7 @@ namespace API.Controllers
         public InquiryController() { }
 
         [HttpGet]
-        public async Task<ActionResult<List<Order>>> GetInquiries()
+        public async Task<ActionResult<List<OrderDTO>>> GetInquiries()
         {
             return await Mediator.Send(new List.Query());
             

@@ -41,3 +41,11 @@ export interface IOrder{
     // zipCode?: string;
     // city?: string;
 }
+
+export interface IOrderDisplay{
+    id?: number;
+    client?: IClient;
+    inquiry?: IInquiry;
+    companyName?: string;
+    price?: number;
+}

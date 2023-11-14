@@ -1,4 +1,5 @@
 using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
@@ -8,6 +9,12 @@ namespace Persistence
         {
             Console.WriteLine("Clearing data---------------------------------------------------------------------------");
             var _context = context;
+
+            // context.Database.ExecuteSqlRaw($"DROP TABLE IF EXISTS Orders");
+            // context.Database.ExecuteSqlRaw($"DROP TABLE IF EXISTS Inquiries");
+            // context.Database.ExecuteSqlRaw($"DROP TABLE IF EXISTS Clients");
+            // context.Database.ExecuteSqlRaw($"DROP TABLE IF EXISTS Addresses");
+
             var allOrders = _context.Orders.ToList();
             _context.Orders.RemoveRange(allOrders);
 

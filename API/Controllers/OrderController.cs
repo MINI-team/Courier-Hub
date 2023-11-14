@@ -9,10 +9,9 @@ namespace API.Controllers
         public OrderController() { }
 
         [HttpGet]
-        public async Task<ActionResult<List<Order>>> GetOrders()
+        public async Task<ActionResult<List<OrderDTO>>> GetOrders()
         {
             return await Mediator.Send(new List.Query());
-            
         }
 
         [HttpGet("{id}")]
