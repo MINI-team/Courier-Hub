@@ -13,27 +13,6 @@ interface Props{
 }
 
 function InfoSummaryComponent(){
-// function InfoSummaryComponent({companyName, price}: Props){
-  const [order, setOrder] = useState({
-    companyName: 'string',
-    price: 0,
-    client: {
-      firstName: 'string',
-      lastName: 'string',
-      email: 'string',
-      login: 'string',
-      password: 'string',
-      addr: {
-        streetName: 'string',
-        streetNo: 0,
-        flatNo: 0,
-        zipCode: 'string',
-        city: 'string',
-      },
-    },
-    // Set inquiryInfoId to the existing InquiryInfo ID
-    inquiryInfoId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-  });
   const [info, setInfo] = useState({});
   const [inquiry, setInquiry] = useState<IInquiry | undefined>(undefined);
   const [renderSummary, setRenderSummary] = useState(false);
@@ -42,22 +21,18 @@ function InfoSummaryComponent(){
   function handleInputChange (event: ChangeEvent<HTMLInputElement>) {
       const {name, value} = event.target;
       setInfo({...info, [name]: value})
-      console.log(`${name} changed to ${value}`);
+      // console.log(`${name} changed to ${value}`);
   }
 
-  function handleSubmit() {
-    // console.log(info);
-    // let {id, ...inquiry1} = inquiry!;
-    // let order: IOrder = {"client": {}, "inquiryInfo": inquiry!, "companyName": "Company A", "price": Math.random()*10}
-    // console.log(`Posting ${inquiry?.weight} ${inquiry?.height}`);
-    // axios.post("http://localhost:5147/api/Order", {...info, inquiry1, "CompanyName": "Company A", "Price": Math.random()*10})
-    axios.post('http://localhost:5147/api/Order', order, {
+  async function handleSubmit() {
+    let order: IOrder = {"clientId": 17, "inquiryId": inquiry!.id, "companyName": "Company A", "price": 10*Math.random()}
+    await axios.post('http://localhost:5147/api/Order', order, {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'text/plain',
       },
-    })
-    .then( response => console.log(`aaa ${response.data}`));
+    });
+    // .then( response => console.log(`aaa ${response.data}`));
     history.replace('/orders');
   }
 
@@ -65,10 +40,6 @@ function InfoSummaryComponent(){
     axios.get("http://localhost:5000/inquiries").then(response => 
     {
       setInquiry(response.data[response.data.length - 1]);
-      setOrder((prevOrder) => ({
-        ...prevOrder,
-        inquiryInfo: response.data,
-      }));
       setRenderSummary(true);
     });
   }, []);
@@ -99,6 +70,5 @@ function InfoSummaryComponent(){
     </div>
   )
 }
- 
-// export default observer(InfoSummaryComponent);
+
 export default InfoSummaryComponent;

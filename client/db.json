@@ -18,55 +18,6 @@
       "submitted": false,
       "offers": [],
       "priority": "high",
-      "deliveredOnWeekend": true,
-      "width": "99",
-      "height": "88",
-      "weight": "77",
-      "date": "2023-11-12",
-      "sourceStreetName": "Bogatki",
-      "sourceStreetNumber": "17",
-      "sourceZipCode": "02-837",
-      "sourceCity": "Warszawa",
-      "destinationStreetName": "Bogatki",
-      "destinationStreetNumber": "17",
-      "destinationZipCode": "02-837",
-      "destinationCity": "Warszawa",
-      "id": 1
-    },
-    {
-      "submitted": false,
-      "offers": [],
-      "priority": "high",
-      "deliveredOnWeekend": false,
-      "width": "69",
-      "height": "8834",
-      "weight": "34",
-      "date": "2023-11-18",
-      "sourceStreetName": "Bogatki",
-      "sourceStreetNumber": "17",
-      "sourceZipCode": "02-837",
-      "sourceCity": "Warszawa",
-      "destinationStreetName": "Bogatki",
-      "destinationStreetNumber": "17",
-      "destinationZipCode": "02-837",
-      "destinationCity": "Warszawa",
-      "id": 2
-    },
-    {
-      "submitted": false,
-      "offers": [],
-      "priority": "low",
-      "deliveredOnWeekend": false,
-      "width": "4352",
-      "height": "22",
-      "weight": "34",
-      "date": "2023-09-13",
-      "id": 3
-    },
-    {
-      "submitted": false,
-      "offers": [],
-      "priority": "high",
       "deliveredOnWeekend": false,
       "width": "3415",
       "height": "45",
@@ -80,7 +31,7 @@
       "destinationStreetNumber": "17",
       "destinationZipCode": "02-837",
       "destinationCity": "Warszawa",
-      "id": 4
+      "id": 14
     },
     {
       "submitted": false,
@@ -99,7 +50,7 @@
       "destinationStreetNumber": "17",
       "destinationZipCode": "02-837",
       "destinationCity": "Warszawa",
-      "id": 5
+      "id": 15
     },
     {
       "submitted": false,
@@ -110,7 +61,7 @@
       "height": "12",
       "weight": "1",
       "date": "2023-10-30",
-      "id": 6
+      "id": 16
     },
     {
       "submitted": false,
@@ -129,7 +80,7 @@
       "destinationStreetNumber": "17",
       "destinationZipCode": "02-837",
       "destinationCity": "Warszawa",
-      "id": 7
+      "id": 17
     },
     {
       "submitted": false,
@@ -148,7 +99,7 @@
       "destinationStreetNumber": "17",
       "destinationZipCode": "02-837",
       "destinationCity": "Warszawa",
-      "id": 8
+      "id": 18
     }
   ],
   "orders": [

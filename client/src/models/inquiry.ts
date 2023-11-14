@@ -1,4 +1,6 @@
 export interface IInquiry{
+    id: number;
+
     width?: number;
     height?: number;
     weight?: number;
@@ -20,13 +22,12 @@ export interface IInquiry{
     offers?: number[];
     priority?: string;
     deliveredOnWeekend?: boolean;
-
-    id?: number;
 }
 
 export function getEmptyInquiry (){
     const inquiry = 
     {
+        id: -1,
         width: undefined,
         height: undefined,
     }

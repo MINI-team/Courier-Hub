@@ -2,8 +2,11 @@ import { IClient } from "./client";
 import { IInquiry } from "./inquiry";
 
 export interface IOrder{
-    client?: IClient;
-    inquiryInfo?: IInquiry;
+    id?: number;
+    clientId: number;
+    // client?: IClient;
+    inquiryId: number;
+    // inquiryInfo?: IInquiry;
     companyName?: string;
     price?: number;
 
@@ -24,10 +27,10 @@ export interface IOrder{
     // destinationZipCode?: string;
     // destinationCity?: string;
 
-    submitted?: boolean;
-    offers?: number[];
-    priority?: string;
-    deliveredOnWeekend?: boolean;
+    // submitted?: boolean;
+    // offers?: number[];
+    // priority?: string;
+    // deliveredOnWeekend?: boolean;
 
     // firstName?: string;
     // lastName?: string;
@@ -37,6 +40,4 @@ export interface IOrder{
     // flatNumber?: string;
     // zipCode?: string;
     // city?: string;
-
-    id?: number;
 }

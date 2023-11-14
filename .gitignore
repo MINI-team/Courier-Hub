@@ -3,6 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+*.db
+
 # User-specific files
 *.rsuser
 *.suo
@@ -475,3 +477,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+API/courierhub.db
+API/courierhub.db-wal
+API/courierhub.db-shm
