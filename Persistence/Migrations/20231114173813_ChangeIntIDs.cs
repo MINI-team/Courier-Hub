@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class ChangeIntIDs : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,8 @@ namespace Persistence.Migrations
                 name: "Addresses",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     StreetName = table.Column<string>(type: "TEXT", nullable: false),
                     StreetNo = table.Column<int>(type: "INTEGER", nullable: false),
                     FlatNo = table.Column<int>(type: "INTEGER", nullable: true),
@@ -28,23 +29,24 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Client",
+                name: "Clients",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     LastName = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     Login = table.Column<string>(type: "TEXT", nullable: false),
                     Password = table.Column<string>(type: "TEXT", nullable: false),
-                    AddrId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    AddressId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Client", x => x.Id);
+                    table.PrimaryKey("PK_Clients", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Client_Addresses_AddrId",
-                        column: x => x.AddrId,
+                        name: "FK_Clients_Addresses_AddressId",
+                        column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -54,13 +56,14 @@ namespace Persistence.Migrations
                 name: "Inquiries",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Width = table.Column<int>(type: "INTEGER", nullable: false),
                     Height = table.Column<int>(type: "INTEGER", nullable: false),
                     Weight = table.Column<int>(type: "INTEGER", nullable: false),
                     Date = table.Column<DateOnly>(type: "TEXT", nullable: false),
-                    SourceAddressId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    DestinationAddressId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    SourceAddressId = table.Column<int>(type: "INTEGER", nullable: false),
+                    DestinationAddressId = table.Column<int>(type: "INTEGER", nullable: false),
                     Priority = table.Column<string>(type: "TEXT", nullable: false),
                     DeliveredOnWeekend = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
@@ -85,9 +88,10 @@ namespace Persistence.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    ClientId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    InquiryInfoId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ClientId = table.Column<int>(type: "INTEGER", nullable: false),
+                    InquiryId = table.Column<int>(type: "INTEGER", nullable: false),
                     CompanyName = table.Column<string>(type: "TEXT", nullable: false),
                     Price = table.Column<double>(type: "REAL", nullable: false)
                 },
@@ -95,23 +99,23 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Client_ClientId",
+                        name: "FK_Orders_Clients_ClientId",
                         column: x => x.ClientId,
-                        principalTable: "Client",
+                        principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Orders_Inquiries_InquiryInfoId",
-                        column: x => x.InquiryInfoId,
+                        name: "FK_Orders_Inquiries_InquiryId",
+                        column: x => x.InquiryId,
                         principalTable: "Inquiries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Client_AddrId",
-                table: "Client",
-                column: "AddrId");
+                name: "IX_Clients_AddressId",
+                table: "Clients",
+                column: "AddressId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Inquiries_DestinationAddressId",
@@ -129,9 +133,9 @@ namespace Persistence.Migrations
                 column: "ClientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_InquiryInfoId",
+                name: "IX_Orders_InquiryId",
                 table: "Orders",
-                column: "InquiryInfoId");
+                column: "InquiryId");
         }
 
         /// <inheritdoc />
@@ -141,7 +145,7 @@ namespace Persistence.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Client");
+                name: "Clients");
 
             migrationBuilder.DropTable(
                 name: "Inquiries");

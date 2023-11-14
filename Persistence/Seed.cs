@@ -61,7 +61,8 @@ namespace Persistence
                     Email = $"{firstNames[i].ToLower()}.{lastNames[i].ToLower()}@example.com",
                     Login = $"user{i + 1}",
                     Password = "password123", // You should handle password hashing in a real application
-                    Addr = addresses[i]  // Associate an Address with the Client
+                    Address = addresses[i],  // Associate an Address with the Client
+                    AddressId = 1
                 };
                 clients.Add(client);
             }
@@ -98,7 +99,7 @@ namespace Persistence
                     Client = clients[i],
                     CompanyName = internationalCompanies[i % 3],
                     Price = 3.07 + i * 0.39,
-                    InquiryInfo = inquiries[i]
+                    Inquiry = inquiries[i]
                 };
                 orders.Add(order);
             }

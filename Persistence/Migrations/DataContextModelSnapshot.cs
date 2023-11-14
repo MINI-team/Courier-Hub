@@ -19,9 +19,9 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Address", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -48,12 +48,12 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Client", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("AddrId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("AddressId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -77,16 +77,16 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddrId");
+                    b.HasIndex("AddressId");
 
                     b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("Domain.Inquiry", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateOnly>("Date")
                         .HasColumnType("TEXT");
@@ -94,8 +94,8 @@ namespace Persistence.Migrations
                     b.Property<bool>("DeliveredOnWeekend")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("DestinationAddressId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("DestinationAddressId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Height")
                         .HasColumnType("INTEGER");
@@ -104,8 +104,8 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("SourceAddressId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("SourceAddressId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Weight")
                         .HasColumnType("INTEGER");
@@ -124,19 +124,19 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Order", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("ClientId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ClientId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("InquiryInfoId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("InquiryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<double>("Price")
                         .HasColumnType("REAL");
@@ -145,20 +145,20 @@ namespace Persistence.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.HasIndex("InquiryInfoId");
+                    b.HasIndex("InquiryId");
 
                     b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Domain.Client", b =>
                 {
-                    b.HasOne("Domain.Address", "Addr")
+                    b.HasOne("Domain.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AddrId")
+                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Addr");
+                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("Domain.Inquiry", b =>
@@ -188,15 +188,15 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Inquiry", "InquiryInfo")
+                    b.HasOne("Domain.Inquiry", "Inquiry")
                         .WithMany()
-                        .HasForeignKey("InquiryInfoId")
+                        .HasForeignKey("InquiryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Client");
 
-                    b.Navigation("InquiryInfo");
+                    b.Navigation("Inquiry");
                 });
 #pragma warning restore 612, 618
         }

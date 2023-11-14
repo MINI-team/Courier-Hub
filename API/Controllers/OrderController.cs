@@ -29,20 +29,11 @@ namespace API.Controllers
             return Ok();
         }
 
-        // [HttpPost]
-        // public async Task<ActionResult<Order>> CreateOrder(Order order)
-        // {
-        //     Console.WriteLine("Hello post---------------------------------------------------------------------------------------");
-        //     if (ModelState.IsValid)
-        //     {
-        //         _context.Orders.Add(order);
-        //         await _context.SaveChangesAsync();
-
-        //         return CreatedAtAction("GetOrder", new { id = order.Id }, order);
-        //     }
-
-        //     return BadRequest(ModelState);
-        // }
-
+        [HttpPost]
+        public async Task<IActionResult> CreateOrder(Order order)
+        {
+            await Mediator.Send(new Create.Command {Order = order});
+            return Ok();
+        }
     }
 }

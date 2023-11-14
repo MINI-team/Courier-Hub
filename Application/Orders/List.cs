@@ -1,5 +1,6 @@
 using Domain;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Orders
@@ -10,7 +11,7 @@ namespace Application.Orders
 
         public class Handler : IRequestHandler<Query, List<Order>>
         {
-        private readonly DataContext _context;
+            private readonly DataContext _context;
             public Handler(DataContext context)
             {
                 _context = context; 
