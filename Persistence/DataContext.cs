@@ -10,5 +10,7 @@ public class DataContext : DbContext
     public DbSet<Address> Addresses { get; set; }
     public DataContext(DbContextOptions options) : base(options)
     {
+        
+
     }
 }

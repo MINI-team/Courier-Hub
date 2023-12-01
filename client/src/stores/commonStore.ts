@@ -3,13 +3,12 @@ import { ServerError } from "../models/serverError";
 
 export default class CommonStore {
     error: ServerError | null = null;
-    token: string | null = localStorage.getItem('jwt');
-    appLoaded = false;
+    token: string | null | undefined = localStorage.getItem('jwt');
 
     constructor() {
         makeAutoObservable(this);
 
-        reaction( // runs when observable changes
+        reaction(
             () => this.token,
             token => {
                 if (token) {
@@ -29,7 +28,4 @@ export default class CommonStore {
         this.token = token;
     }
 
-    setAppLoaded = () => {
-        this.appLoaded = true;
-    }
 }

@@ -19,8 +19,8 @@ public class TokenService
     {
         var claims = new List<Claim>
         {
-            //new Claim(ClaimTypes.Name, client.FirstName),
-            //new Claim(ClaimTypes.NameIdentifier, client.Id.ToString()),
+            new Claim(ClaimTypes.Name, client.FirstName),
+            new Claim(ClaimTypes.NameIdentifier, client.Id.ToString()),
             new Claim(ClaimTypes.Email,client.Email),
         };
 

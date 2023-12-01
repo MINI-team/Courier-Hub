@@ -1,22 +1,19 @@
-﻿using System.Text;
+using System.Text;
 using API.Services;
-using Domain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Persistence;
 
 namespace API.Extensions;
 
 public static class IdentityServiceExtensions
 {
-    public static IServiceCollection AddIdentityServices(this IServiceCollection services,
-        IConfiguration config)
+    public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config)
     {
-        /*services.AddIdentityCore<Client>(opt =>
+        services.AddAuthentication().AddGoogle(googleOptions =>
         {
-            opt.Password.RequireNonAlphanumeric = false;
-            opt.User.RequireUniqueEmail = true;
-        }).AddEntityFrameworkStores<DataContext>();*/
+            googleOptions.ClientId = config["Authentication:Google:ClientId"];
+            googleOptions.ClientSecret = config["Authentication:Google:ClientSecret"];
+        });
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("super secret key"));
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -25,12 +22,11 @@ public static class IdentityServiceExtensions
                 opt.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = key,
+                    IssuerSigningKey = key, // validate that user is signed
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
             });
-        
         services.AddScoped<TokenService>();
         return services;
     }
