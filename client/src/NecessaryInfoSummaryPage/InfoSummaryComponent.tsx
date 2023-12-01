@@ -25,7 +25,7 @@ function InfoSummaryComponent(){
   }
 
   async function handleSubmit() {
-    let order: IOrder = {"clientId": 15, "inquiryId": 15, "companyName": "Company A", "price": 9.14} // HARDCODED IDS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    let order: IOrder = {"clientId": 21, "inquiryId": 21, "companyName": "PocztEX_PL", "price": 2.21} // HARDCODED IDS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // let order: IOrder = {"clientId": 15, "inquiryId": inquiry!.id, "companyName": "Company A", "price": 10*Math.random()}
     await axios.post('http://localhost:5147/api/Order', order, {
       headers: {
@@ -34,7 +34,8 @@ function InfoSummaryComponent(){
       },
     });
     // .then( response => console.log(`aaa ${response.data}`));
-    history.replace('/orders');
+    // history.replace('/orders');
+    history.push('/orders'); // maybe replace so the client
   }
 
   useEffect(() => {

@@ -13,7 +13,8 @@ namespace Application.Orders
             public class Handler : IRequestHandler<Command>
             {
                 DataContext _context;
-                public Handler(DataContext context)
+                public Handler(DataContext context) // tightly coupled, 
+                // może lepiej trzymać to oddzielnie (ale wsm może by)
                 {
                     _context = context;                    
                 }

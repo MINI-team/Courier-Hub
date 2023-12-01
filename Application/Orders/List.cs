@@ -25,7 +25,8 @@ namespace Application.Orders
                 {
                     orderDTOs.Add(new OrderDTO{
                         Id = order.Id,
-                        Client = await _context.Clients.FindAsync(order.ClientId),
+                        Client = await _context.Clients.FindAsync(order.ClientId), 
+                        // Client i Inquiry nie są DTO, trzeba to będzie zmienić!!!
                         Inquiry = await _context.Inquiries.FindAsync(order.InquiryId),
                         CompanyName = order.CompanyName,
                         Price = order.Price
