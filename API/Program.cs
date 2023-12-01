@@ -1,3 +1,4 @@
+using Application.Orders;
 using System.Text;
 using API.Extensions;
 using API.Services;
@@ -14,14 +15,24 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(opt => 
 {
-    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-    opt.Filters.Add(new AuthorizeFilter(policy));
+    // var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); // COMMENTED THIS AND IN TSCONFIG.JSON
+    // opt.Filters.Add(new AuthorizeFilter(policy));
 });
 
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 
 
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<DataContext>(opt =>
+{
+    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+}
+);
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(List.Handler).Assembly));
 
 var app = builder.Build();
 
@@ -72,6 +83,8 @@ try
 {
     var context = services.GetRequiredService<DataContext>();
     await context.Database.MigrateAsync();
+    Console.WriteLine("After migration---------------------------------------------------------------------------");
+    // Seed.ClearData(context);
     await Seed.SeedData(context);
 }
 catch (Exception ex)
