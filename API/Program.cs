@@ -1,10 +1,27 @@
 using Application.Orders;
+using System.Text;
+using API.Extensions;
+using API.Services;
+using Application.Core;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.IdentityModel.Tokens;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddControllers(opt => 
+{
+    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+    opt.Filters.Add(new AuthorizeFilter(policy));
+});
+
+builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -15,17 +32,10 @@ builder.Services.AddDbContext<DataContext>(opt =>
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 }
 );
-builder.Services.AddCors(opt => 
-{
-    opt.AddPolicy("CorsPolicy", policy =>
-    {
-        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:5173/orders", "https://localhost:5173/orders",
-        "http://localhost:5173", "https://localhost:5173");
-    });
-});
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(List.Handler).Assembly));
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -34,13 +44,33 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// app.UseHttpsRedirection();
+app.UseCors(opt =>
+{
+    opt.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+});
+//app.UseCors("CorsPolicy");
 
-app.UseCors("CorsPolicy");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+    await next();
+});
+
 app.MapControllers();
+app.UseRouting();
+/*
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers(); // Ensure this line is present
+    // Other endpoint mappings...
+});
+*/
 
 Console.WriteLine("Hello from Windows");
 Console.WriteLine("Hello from Mac on feature-test-mac branch");

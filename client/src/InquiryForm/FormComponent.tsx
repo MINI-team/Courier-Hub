@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { ChangeEvent } from 'react'
-import { useHistory } from 'react-router-dom';
-import { Form, CheckboxProps } from 'semantic-ui-react'
+import {Form, CheckboxProps} from 'semantic-ui-react'
+
 
 interface IState {
   // width?: number;
@@ -80,8 +80,10 @@ class FormComponent extends React.Component<{}, IState> {
             {/* <button onClick={this.goToSummary}></button> */}
           </div>
           :
+            
         <div style={{paddingLeft: '5%'}}>
         <Form onSubmit={this.handleSubmit}>
+           
           <h2>Basic information</h2>
           <Form.Group>
             <Form.Input fluid label='Width (cm)' placeholder='0' width={2} name="width" onChange={this.handleInputChange}/>

@@ -1,16 +1,18 @@
-import {createContext, useContext} from "react";
-import InquiryStore from "./inquiryStore";
+import { createContext, useContext } from "react";
+import ClientStore from "./clientStore";
+import CommonStore from "./commonStore";
 
-interface Store {
-    inquiryStore: InquiryStore
+interface Store{
+    clientStore: ClientStore;
+    commonStore: CommonStore;
 }
 
 export const store: Store = {
-    inquiryStore: new InquiryStore()
+    clientStore: new ClientStore(),
+    commonStore: new CommonStore(),
 }
 
 export const StoreContext = createContext(store);
-
 export function useStore() {
     return useContext(StoreContext);
 }
