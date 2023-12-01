@@ -15,8 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(opt => 
 {
-    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-    opt.Filters.Add(new AuthorizeFilter(policy));
+    // var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); // COMMENTED THIS AND IN TSCONFIG.JSON
+    // opt.Filters.Add(new AuthorizeFilter(policy));
 });
 
 builder.Services.AddApplicationServices(builder.Configuration);
@@ -84,7 +84,7 @@ try
     var context = services.GetRequiredService<DataContext>();
     await context.Database.MigrateAsync();
     Console.WriteLine("After migration---------------------------------------------------------------------------");
-    Seed.ClearData(context);
+    // Seed.ClearData(context);
     await Seed.SeedData(context);
 }
 catch (Exception ex)

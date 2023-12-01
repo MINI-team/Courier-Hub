@@ -66,10 +66,12 @@ namespace Persistence
                     FirstName = firstNames[i],
                     LastName = lastNames[i],
                     Email = $"{firstNames[i].ToLower()}.{lastNames[i].ToLower()}@example.com",
-                    Login = $"user{i + 1}",
-                    Password = "password123", // You should handle password hashing in a real application
-                    Address = addresses[i],  // Associate an Address with the Client
-                    AddressId = 1
+                    Sub = "1q2w3e4r",
+                    // Login = $"user{i + 1}",
+                    // Password = "password123", // You should handle password hashing in a real application
+                    // Address = addresses[i],  // Associate an Address with the Client
+                    AddressId = 1,
+                    SourceAddressId = 1
                 };
                 clients.Add(client);
             }

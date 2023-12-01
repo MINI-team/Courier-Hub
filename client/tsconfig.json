@@ -5,17 +5,17 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "headers": [
-      {
-        "source": "/(.*)",
-        "headers": [
-          {
-            "key": "Cross-Origin-Opener-Policy",
-            "value": "same-origin-allow-popups"
-          }
-        ]
-      }
-    ],
+    // "headers": [
+    //   {
+    //     "source": "/(.*)",
+    //     "headers": [
+    //       {
+    //         "key": "Cross-Origin-Opener-Policy",
+    //         "value": "same-origin-allow-popups"
+    //       }
+    //     ]
+    //   }
+    // ],
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

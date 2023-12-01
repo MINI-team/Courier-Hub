@@ -11,8 +11,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231114175534_ClientOptional")]
-    partial class ClientOptional
+    [Migration("20231201231414_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,17 +70,18 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("SourceAddressId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("Sub")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
+
+                    b.HasIndex("SourceAddressId");
 
                     b.ToTable("Clients");
                 });
@@ -161,7 +162,15 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Address", "SourceAddress")
+                        .WithMany()
+                        .HasForeignKey("SourceAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Address");
+
+                    b.Navigation("SourceAddress");
                 });
 
             modelBuilder.Entity("Domain.Inquiry", b =>

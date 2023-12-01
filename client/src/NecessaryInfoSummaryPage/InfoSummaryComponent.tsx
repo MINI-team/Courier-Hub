@@ -25,12 +25,13 @@ function InfoSummaryComponent(){
   }
 
   async function handleSubmit() {
-    let order: IOrder = {"clientId": 21, "inquiryId": 21, "companyName": "PocztEX_PL", "price": 2.21} // HARDCODED IDS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    let order: IOrder = {"clientId": 1, "inquiryId": 1, "companyName": "PocztEX_PL", "price": 2.21} // HARDCODED IDS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // let order: IOrder = {"clientId": 15, "inquiryId": inquiry!.id, "companyName": "Company A", "price": 10*Math.random()}
     await axios.post('http://localhost:5147/api/Order', order, {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'text/plain',
+        // Authorization: 'super secret key',
       },
     });
     // .then( response => console.log(`aaa ${response.data}`));
@@ -66,7 +67,7 @@ function InfoSummaryComponent(){
           <Form.Input fluid label='City' placeholder='Warszawa' width={2} name="city" onChange={handleInputChange}/>
         </Form.Group>
       </Form>
-      <h1>Summary:</h1>
+      <h2 style={{fontSize: 50}}>Summary:</h2>
       {renderSummary ? <FormComponent2 inquiry={inquiry}></FormComponent2> : <></>}
       <Form.Button color="green" size="massive" onClick={handleSubmit}>Submit</Form.Button>
     </div>

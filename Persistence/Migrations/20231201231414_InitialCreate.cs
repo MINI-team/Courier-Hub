@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class ChangeIntIDs : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,9 +37,9 @@ namespace Persistence.Migrations
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     LastName = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Login = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false),
-                    AddressId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Sub = table.Column<string>(type: "TEXT", nullable: false),
+                    AddressId = table.Column<int>(type: "INTEGER", nullable: false),
+                    SourceAddressId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,6 +47,12 @@ namespace Persistence.Migrations
                     table.ForeignKey(
                         name: "FK_Clients_Addresses_AddressId",
                         column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Clients_Addresses_SourceAddressId",
+                        column: x => x.SourceAddressId,
                         principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -115,6 +122,11 @@ namespace Persistence.Migrations
                 name: "IX_Clients_AddressId",
                 table: "Clients",
                 column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clients_SourceAddressId",
+                table: "Clients",
+                column: "SourceAddressId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Inquiries_DestinationAddressId",
