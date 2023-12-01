@@ -3,8 +3,8 @@ import ClientStore from "./clientStore";
 import CommonStore from "./commonStore";
 
 interface Store{
-    clientStore: ClientStore,
-    commonStore: CommonStore
+    clientStore: ClientStore;
+    commonStore: CommonStore;
 }
 
 export const store: Store = {
@@ -13,7 +13,6 @@ export const store: Store = {
 }
 
 export const StoreContext = createContext(store);
-
 export function useStore() {
     return useContext(StoreContext);
 }

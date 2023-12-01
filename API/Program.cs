@@ -1,52 +1,31 @@
+using System.Text;
 using API.Extensions;
+using API.Services;
+using Application.Core;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.IdentityModel.Tokens;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Google Authentication
-
-var configuration = builder.Configuration;
-builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+builder.Services.AddControllers(opt => 
 {
-    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+    opt.Filters.Add(new AuthorizeFilter(policy));
 });
-// Add services to the container.
 
-/*
-builder.Services.AddControllers(opt =>
-{
-    var policy = new AuthorizationPolicyBuilder();
-    opt.Filters.Add(new AuthorizedFilter(policy));
-});
-*/
-builder.Services.AddControllers();
+builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<DataContext>(opt =>
-{
-    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
-/*builder.Services.AddCors(opt =>
-{
-    /*opt.AddPolicy("CorsPolicy", policy =>
-    {
-        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:5173",
-            "http://localhost:5173/", "http://localhost:5173/login",
-            "http://localhost:5173/register", "http://localhost:5173/form",
-            "https://localhost:5173",
-            "https://localhost:5173/", "https://localhost:5173/login",
-            "https://localhost:5173/register", "https://localhost:5173/form");
-    });#1#
-});*/
 
 var app = builder.Build();
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -62,7 +41,6 @@ app.UseCors(opt =>
 });
 //app.UseCors("CorsPolicy");
 
-//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -74,6 +52,14 @@ app.Use(async (context, next) =>
 });
 
 app.MapControllers();
+app.UseRouting();
+/*
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers(); // Ensure this line is present
+    // Other endpoint mappings...
+});
+*/
 
 Console.WriteLine("Hello from Windows");
 Console.WriteLine("Hello from Mac on feature-test-mac branch");

@@ -1,10 +1,12 @@
-import {makeAutoObservable, runInAction} from "mobx";
-import {Client, ClientFormValues} from "../models/client";
 import agent from "../api/agent";
+import { Client, ClientFormValues } from "../models/client";
+import {makeAutoObservable, runInAction} from "mobx";
 import { store } from "./store";
+//import {useHistory} from "react-router-dom";
 
 export default class ClientStore{
     client: Client | null = null;
+    
     constructor() {
         makeAutoObservable(this);
     }
@@ -12,31 +14,38 @@ export default class ClientStore{
     get isLoggedIn(){
         return !!this.client;
     }
-    
-    login = async (creds: ClientFormValues) => {
-        try{
-            await agent.Account.login(client);
-            const newActivity = new Activity(activity);
-            // navigate to another page
-        } catch (error){
-            console.log(error);
-            throw error;
-        }
+
+    login = async(creds: ClientFormValues) => {
+        const client = await agent.Account.login(creds);
+        store.commonStore.setToken(client.token);
+        runInAction(() => this.client = client);
+        console.log('Logged in!');
+        console.log(client);
+        //routing
+        //history.push('/form');
     }
-
-
-    logout = () => {
+    
+    /*register = async(creds: ClientFormValues) =>{
+        const client = await agent.Account.register(creds);
+        store.commonStore.setToken(client.token);
+        runInAction(()=> this.client =client);
+        //routing
+        console.log('Logged in!');
+        console.log(client);
+    }*/
+    
+    logout =()=>{
         store.commonStore.setToken(null);
-        //localStorage.removeItem('jwt');
         this.client = null;
-        // route
+        // na udemy tu jest routing ale nwm
+        console.log('logged out!');
     }
     
-    getClient = async() => {
-        try {
+    getClient = async()=>{
+        try{
             const client = await agent.Account.current();
-            runInAction(() => this.client = client);
-        } catch (error){
+            runInAction(()=> this.client = client);
+        } catch(error){
             console.log(error);
         }
     }

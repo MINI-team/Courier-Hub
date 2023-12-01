@@ -1,46 +1,37 @@
-import { useHistory } from 'react-router-dom';
+import {useHistory } from 'react-router-dom';
 import './LandingPage.css';
 import { observer } from 'mobx-react-lite';
-import { useStore } from '../stores/store';
 import {useEffect, useState} from "react";
 import { jwtDecode } from 'jwt-decode';
-import axios from 'axios';
-//import agent from '../api/agent';
+//import axios from 'axios';
 //import { ClientFormValues } from '../models/client';
-//import {jwtDecode} from "jwt-decode/build/esm";
-//import axios from "axios/index";
 
 const LandingPage = () => {
   const history = useHistory();
 
-  const goToForm = () => {
+    const goToForm = () => {
     history.push('/form');
   };
-
- /* const goToLogin = () => {
-    history.push('/login');
-  };
-*/
-    const goToRegister = () => {
-        history.push('/register');
-    };
-
-    const {clientStore} = useStore();
-
-
-    const [, setUser] = useState({});
+    const [, /*setUser*/] = useState({});
     function handleCallbackResponse(response: any) {
         console.log("Encoded INT ID token: " + response.credential);
         var userObject = jwtDecode(response.credential);
         console.log(userObject);
-        setUser(userObject);
-        axios.post('http://localhost:5147/api/Account/login', userObject).then((response: { data: any; }) => {
-            console.log('Data sent to server:', response.data);
-        }).catch((error: any) => {
-            console.error('Error sending data to server:', error);
-        });
-        
-        history.goBack(); // CHANGE --> inquire history
+        if (userObject) {
+            var subc = userObject.sub;
+
+            console.log("Subject (sub): " + subc);
+            if(subc==undefined){
+                subc = 'error'
+            }
+            history.push({
+                pathname: '/login',
+                state: { sub: subc }
+            })
+            
+        } else {
+            console.log("No user object found in the decoded token.");
+        }
     }
 
     useEffect(() => {
@@ -66,18 +57,9 @@ const LandingPage = () => {
     
   return (
     <div className="landing-container">
-        {clientStore.isLoggedIn ? (
-            <button className="logout-button">
-                Log Out
-            </button>
-            ) : (
-            <div id="signInDiv">
-
-            </div>
-        )}
-     <button className="login-button" onClick={goToRegister}>
-         Register
-     </button>
+        
+       {/* { clientStore.isLoggedIn ? (<div id="signInDiv"/>) : (<Button onClick={clientStore.logout}>Logout</Button>)}*/}
+        <div id="signInDiv"/>
       <h1>CourierHub</h1>
       <button className="landing-button" onClick={goToForm}>
         Load Form
