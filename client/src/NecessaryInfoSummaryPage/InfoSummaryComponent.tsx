@@ -5,12 +5,13 @@ import FormComponent2 from "../InquiryForm/FormComponent2";
 import { IInquiry } from "../models/inquiry";
 import { useHistory } from "react-router-dom";
 import { IOrder } from "../models/order";
+import agent from "../api/agent";
 
-interface Props{
-  companyID: number;
-  companyName: string;
-  price: number;
-}
+// interface Props{
+//   companyID: number;
+//   companyName: string;
+//   price: number;
+// }
 
 function InfoSummaryComponent(){
   const [info, setInfo] = useState({});
@@ -27,13 +28,14 @@ function InfoSummaryComponent(){
   async function handleSubmit() {
     let order: IOrder = {"clientId": 1, "inquiryId": 1, "companyName": "PocztEX_PL", "price": 2.21} // HARDCODED IDS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // let order: IOrder = {"clientId": 15, "inquiryId": inquiry!.id, "companyName": "Company A", "price": 10*Math.random()}
-    await axios.post('http://localhost:5147/api/Order', order, {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'text/plain',
-        // Authorization: 'super secret key',
-      },
-    });
+    // await axios.post('http://localhost:5147/api/Order', order, {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Accept: 'text/plain',
+    //     // Authorization: 'super secret key',
+    //   },
+    // });
+    await agent.Orders.post(order);
     // .then( response => console.log(`aaa ${response.data}`));
     // history.replace('/orders');
     history.push('/orders'); // maybe replace so the client

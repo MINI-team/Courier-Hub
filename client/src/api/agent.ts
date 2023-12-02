@@ -1,5 +1,7 @@
 import axios, {AxiosResponse} from "axios";
 import { Client, ClientFormValues } from "../models/client";
+import { IOrder, IOrderDisplay } from "../models/order";
+import { IInquiry } from "../models/inquiry";
 
 axios.defaults.baseURL = 'http://localhost:5147/api';
 
@@ -18,8 +20,19 @@ const Account = {
     //register: (client: ClientFormValues) => requests.post<Client>('/account/register', client),
 }
 
+const Orders = {
+    post: (order: IOrder) => requests.post<IOrder>('/Order', order),
+    get: () => requests.get<IOrderDisplay []>('/Order')
+}
+
+const Inquiries = {
+    get: () => requests.get<IInquiry []>('inquiries')
+}
+
 const agent = {
     Account,
+    Orders,
+    Inquiries // not yet used
 }
 
 export default agent;

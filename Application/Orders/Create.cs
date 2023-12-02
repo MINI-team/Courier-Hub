@@ -8,7 +8,7 @@ namespace Application.Orders
     {
         public class Command : IRequest
         {
-            public Order Order { get; set; }
+            public Order? Order { get; set; } // not DTO
 
             public class Handler : IRequestHandler<Command>
             {
@@ -20,7 +20,7 @@ namespace Application.Orders
                 }
                 public async Task Handle(Command request, CancellationToken cancellationToken)
                 {
-                    _context.Orders.Add(request.Order);
+                    _context.Orders.Add(request.Order!);
                     await _context.SaveChangesAsync();
                 }
             }
