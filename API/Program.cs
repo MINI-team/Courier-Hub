@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
+using Application.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -86,12 +87,12 @@ try
     Console.WriteLine("After migration---------------------------------------------------------------------------");
     // Seed.ClearData(context);
     await Seed.SeedData(context);
+    Mapping._context = context;
 }
 catch (Exception ex)
 {
     var logger = services.GetRequiredService<ILogger<Program>>();
     logger.LogError(ex, "an error occured during migration");
-
     throw;
 }
 
