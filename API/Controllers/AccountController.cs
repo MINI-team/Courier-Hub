@@ -31,6 +31,12 @@ public class AccountController /* : BaseApiController*/ : ControllerBase
             FirstName = "Marysia",
             LastName = "Gwiazda",
             Email = "marysiagwiazda0@gmail.com",
+        },
+        new Client
+        {
+            FirstName = "Piotr",
+            LastName = "Głowacki",
+            Email = "glowacki.pj@gmail.com",
         }
     };
 

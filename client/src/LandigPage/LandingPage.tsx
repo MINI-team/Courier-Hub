@@ -40,7 +40,7 @@ const LandingPage = () => {
         script.async = true;
         script.onload = () => {
             (window as any).google.accounts.id.initialize({
-                client_id: "",
+                client_id: "1086724498905-vjkbqo0jh0m6n0g9vfu9m2vqf01abbib.apps.googleusercontent.com",
                 callback: handleCallbackResponse,
             });
             (window as any).google.accounts.id.renderButton(document.getElementById("signInDiv"),

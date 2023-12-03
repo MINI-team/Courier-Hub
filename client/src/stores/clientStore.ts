@@ -16,6 +16,7 @@ export default class ClientStore{
     }
 
     login = async(creds: ClientFormValues) => {
+        console.log('Before log in request');
         const client = await agent.Account.login(creds);
         store.commonStore.setToken(client.token);
         runInAction(() => this.client = client);
@@ -44,6 +45,8 @@ export default class ClientStore{
     getClient = async()=>{
         try{
             const client = await agent.Account.current();
+            // const client = await agent.Account.current("");
+            // const client = await agent.Account.current(this.client?.token!);
             runInAction(()=> this.client = client);
         } catch(error){
             console.log(error);
