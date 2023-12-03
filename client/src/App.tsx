@@ -14,12 +14,6 @@ import MyOrdersComponent from './MyOrders/MyOrdersComponent';
 import YourComponent from './NecessaryInfoSummaryPage/SummaryChat';
 
 function App() {
-  const {commonStore, clientStore} = useStore();
-  useEffect(() => {
-      if(commonStore.token){
-          clientStore.getClient();
-      } 
-  }, [commonStore, clientStore]);
   return (
     <Router>
       <Switch>

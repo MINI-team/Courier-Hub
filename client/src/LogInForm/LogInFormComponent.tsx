@@ -26,7 +26,6 @@ export default observer(function LoginFormComponent() {
                 console.log(values);
                 console.log(sub);
                 const updatedValues = { ...values, sub };
-                console.log('Before login')
                 clientStore.login(updatedValues)
                 history.replace('/form');
             }

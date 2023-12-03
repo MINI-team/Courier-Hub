@@ -16,8 +16,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(opt => 
 {
-    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); // COMMENTED THIS AND IN TSCONFIG.JSON
-    opt.Filters.Add(new AuthorizeFilter(policy));
+    // var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); // COMMENTED THIS AND IN TSCONFIG.JSON
+    // opt.Filters.Add(new AuthorizeFilter(policy));
 });
 
 builder.Services.AddApplicationServices(builder.Configuration);

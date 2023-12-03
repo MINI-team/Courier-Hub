@@ -100,21 +100,6 @@
       "destinationZipCode": "02-837",
       "destinationCity": "Warszawa",
       "id": 18
-    },
-    {
-      "submitted": false,
-      "offers": [],
-      "priority": "low",
-      "deliveredOnWeekend": false,
-      "width": "69",
-      "id": 19
-    },
-    {
-      "submitted": false,
-      "offers": [],
-      "priority": "low",
-      "deliveredOnWeekend": false,
-      "id": 20
     }
   ],
   "orders": [

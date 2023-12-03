@@ -2,33 +2,18 @@ import { useEffect, useState } from "react";
 import { Item } from "semantic-ui-react";
 import { IOrderDisplay } from "../models/order";
 import agent from "../api/agent";
-import { useStore } from "../stores/store";
 
 function MyOrdersComponent(this: any){
     const [orders, setOrders] = useState<IOrderDisplay[]>([]);
     const [loaded, setLoaded] = useState(false);
 
-    const {commonStore, clientStore} = useStore();
     useEffect(() => {
-        if(commonStore.token) {
-            console.log("getClient")
-            clientStore.getClient();
-            console.log('commonStore.token is ' + commonStore.token)
-        }
-
         console.log("useEffect")
-        console.log(`Token is ` + clientStore.client?.token!)
-        // agent.Orders.get("wrong token").then(response => {
-        agent.Orders.get(clientStore.client?.token!).then(response => {
+        agent.Orders.get().then(response => {
             console.log(response)
             setOrders(response);
             setLoaded(true);
         });
-
-    }, [commonStore, clientStore]);
-
-    useEffect(() => {
-        
     }, []);
 
     return(
