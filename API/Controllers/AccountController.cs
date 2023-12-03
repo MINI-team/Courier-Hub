@@ -62,8 +62,8 @@ public class AccountController /* : BaseApiController*/ : ControllerBase
             FirstName = client.FirstName,
             LastName = client.LastName,
             Email = client.Email,
-            //Token = _tokenService.CreateToken(client),
-            Token = "123",
+            Token = _tokenService.CreateToken(client),
+            // Token = "123",
         };
     }
 

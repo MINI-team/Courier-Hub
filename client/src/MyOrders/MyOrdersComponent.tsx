@@ -10,16 +10,19 @@ function MyOrdersComponent(this: any){
 
     const {commonStore, clientStore} = useStore();
     useEffect(() => {
-        if(commonStore.token) {
-            console.log("getClient")
-            clientStore.getClient();
-            console.log('commonStore.token is ' + commonStore.token)
-        }
+        // if(commonStore.token) {
+        //     console.log("getClient")
+        //     clientStore.getClient();
+        //     console.log('commonStore.token is ' + commonStore.token)
+        // }
 
         console.log("useEffect")
         console.log(`Token is ` + clientStore.client?.token!)
+        console.log('commonStore.token is ' + commonStore.token)
         // agent.Orders.get("wrong token").then(response => {
-        agent.Orders.get(clientStore.client?.token!).then(response => {
+        agent.Orders.get().then(response => {
+        // agent.Orders.get(commonStore.token!).then(response => {
+        // agent.Orders.get(clientStore.client?.token!).then(response => {
             console.log(response)
             setOrders(response);
             setLoaded(true);

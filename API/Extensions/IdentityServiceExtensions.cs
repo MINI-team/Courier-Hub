@@ -15,7 +15,7 @@ public static class IdentityServiceExtensions
             googleOptions.ClientSecret = config["Authentication:Google:ClientSecret"];
         });
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("super secret key"));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("super secret key super secret key super secret key super secret key"));
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(opt =>
             {

@@ -16,19 +16,24 @@ namespace Persistence
             // context.Database.ExecuteSqlRaw($"DROP TABLE IF EXISTS Addresses");
 
             var allOrders = _context.Orders.ToList();
-            _context.Orders.RemoveRange(allOrders);
+            List<Order> badOrders = new List<Order>();
+            allOrders.ForEach(order => {
+                if(order.CompanyName == "PocztEX_PL")
+                    badOrders.Add(order);
+            });
+            _context.Orders.RemoveRange(badOrders);
 
-            // Delete all records in the Inquiries table
-            var allInquiries = _context.Inquiries.ToList();
-            _context.Inquiries.RemoveRange(allInquiries);
+            // // Delete all records in the Inquiries table
+            // var allInquiries = _context.Inquiries.ToList();
+            // _context.Inquiries.RemoveRange(allInquiries);
 
-            // Delete all records in the Clients table
-            var allClients = _context.Clients.ToList();
-            _context.Clients.RemoveRange(allClients);
+            // // Delete all records in the Clients table
+            // var allClients = _context.Clients.ToList();
+            // _context.Clients.RemoveRange(allClients);
 
-            // Delete all records in the Addresses table
-            var allAddresses = _context.Addresses.ToList();
-            _context.Addresses.RemoveRange(allAddresses);
+            // // Delete all records in the Addresses table
+            // var allAddresses = _context.Addresses.ToList();
+            // _context.Addresses.RemoveRange(allAddresses);
 
             // Save changes to the database
             _context.SaveChanges();
