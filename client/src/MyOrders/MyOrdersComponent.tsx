@@ -17,7 +17,7 @@ function MyOrdersComponent(this: any){
     }, []);
 
     return(
-        <div style={{paddingLeft: '5%'}}>
+        <div data-testid="orders-page" style={{paddingLeft: '5%'}}>
             <Item.Group divided>
                 {loaded && orders.map(order =>(
                     <Item key={order.id}>
