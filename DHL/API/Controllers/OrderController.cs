@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
@@ -11,15 +10,17 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class OffersController : BaseApiController
+    public class OrderController : BaseApiController
     {
-        public OffersController() { }
+        public OrderController()
+        { 
+
+        }
 
         [HttpPost]
-        public async Task<ActionResult<double>> GetPrice(InquiryDTO inquiry)
+        public async Task<ActionResult<double>> TakeOrder(InquiryDTO order)
         {
-            return await Mediator.Send(new GetOffer.Query {Order = inquiry});
-            // return Ok();
+            return await Mediator.Send(new MakeOrder.Query {Order = order});
         }
     }
 }

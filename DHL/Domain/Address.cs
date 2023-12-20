@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API.DTOs
+namespace Domain
 {
-    public class AddressDTO
+    public class Address
     {
-        // public int Id { get; set; }
+        public int Id { get; set; }
         public string StreetName { get; set; }
         public int StreetNo { get; set; }
         public int? FlatNo { get; set; }

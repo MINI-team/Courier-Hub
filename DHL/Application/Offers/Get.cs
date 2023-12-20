@@ -3,7 +3,7 @@ using API.DTOs;
 
 namespace Application.Offers
 {
-    public class Get
+    public class GetOffer
     {
         public class Query : IRequest<double>
         {
