@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
+using Application.Offers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -10,14 +12,15 @@ namespace API.Controllers
     [ApiController]
     [Route("api/[controller]")]
     public class OffersController : BaseApiController
+    {
     
         public OffersController() { }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrder(InquiryDTO inquiry)
+        public async Task<ActionResult<double>> GetPrice(InquiryDTO inquiry)
         {
-            await Mediator.Send(new Create.Command {Order = order});
-            return Ok();
+            return await Mediator.Send(new Get.Query {Order = inquiry});
+            // return Ok();
         }
     }
 }
