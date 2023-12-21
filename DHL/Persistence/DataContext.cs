@@ -10,5 +10,7 @@ namespace Persistence
         }
 
         public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OldOrder> DeliveredOrders { get; set; }
     }
 }

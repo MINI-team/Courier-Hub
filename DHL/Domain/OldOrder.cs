@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Domain
 {
-    public class Order
+    public class OldOrder
     {
         public int Id { get; set; }
         public int Width { get; set; }
@@ -16,7 +11,7 @@ namespace Domain
         public Address SourceAddress { get; set; }
         public int DestinationAddressId { get; set; }
         public Address DestinationAddress { get; set; }
-        public int Status { get; set; }
+        // public int Status { get; set; }
         public int CourierID { get; set; }
     }
 }

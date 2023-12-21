@@ -1,9 +1,11 @@
+using Domain;
+using Mapster;
 using MediatR;
 using Persistence;
 
 namespace Application.Orders
 {
-    public class Accept
+    public class CannotDeliver
     {
         public class Command : IRequest
         {
@@ -20,9 +22,15 @@ namespace Application.Orders
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
                 var order = await _context.Orders.FindAsync(request.OrderId);
-                if(order is not null && order.Status == 0) 
-                    order.Status = 1;
-                await _context.SaveChangesAsync();
+                if(order is not null && order.Status == 4)
+                {
+                    order.Status = 1; // now someone else can take it
+                    // var oldOrder = order.Adapt<OldOrder>();
+                    // _context.DeliveredOrders.Add(oldOrder);
+                    // _context.Orders.Remove(order);
+                    await _context.SaveChangesAsync();
+                }
+                
             }
         }
     }
