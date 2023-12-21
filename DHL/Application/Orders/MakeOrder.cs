@@ -5,7 +5,7 @@ using Persistence;
 using Mapster;
 using Domain;
 
-namespace Application.Offers
+namespace Application.Orders
 {
     public class MakeOrder
     {

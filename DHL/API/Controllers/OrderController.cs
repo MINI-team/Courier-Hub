@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.DTOs;
-using Application.Offers;
+using Application.Orders;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -13,8 +9,7 @@ namespace API.Controllers
     public class OrderController : BaseApiController
     {
         public OrderController()
-        { 
-
+        {
         }
 
         [HttpPost]
