@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers
 {
     [ApiController]
-    [Route("Order/GetStatus")]
-    // [Route("api/[controller]")]
+    // [Route("Order/GetStatus")]
+    [Route("api/[controller]")]
     public class GetOrderStatusController : BaseApiController
     {
         [HttpGet("{id}")]
