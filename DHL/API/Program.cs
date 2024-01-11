@@ -21,6 +21,12 @@ builder.Services.AddDbContext<DataContext>(opt =>
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(GetOffer.Handler).Assembly));
 
+builder.Services.AddCors(opt => {
+    opt.AddPolicy("CorsPolicy", policy => {
+        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3001");
+    });
+});
+
 var app = builder.Build();
 
 
@@ -31,6 +37,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("CorsPolicy");
+
 app.MapControllers();
 
 using var scope = app.Services.CreateScope();

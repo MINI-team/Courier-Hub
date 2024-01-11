@@ -11,7 +11,7 @@ namespace Application.Orders
     {
         public class Query : IRequest<int>
         {
-            public InquiryDTO? Order { get; set; } // not DTO
+            public InquiryDTO? Order { get; set; }
         }
 
         public class Handler : IRequestHandler<Query, int>

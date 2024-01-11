@@ -20,7 +20,7 @@ namespace Application.Orders
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
                 var order = await _context.Orders.FindAsync(request.OrderId);
-                if(order is not null && order.Status == 0) 
+                if(order is not null && order.Status == 0)
                     order.Status = 1;
                 await _context.SaveChangesAsync();
             }
