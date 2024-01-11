@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Orders;
 using Domain;
+using Domain.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -13,7 +14,7 @@ namespace API.Controllers
     public class GetOrdersOfficeWorkerController : BaseApiController
     {
         [HttpGet]
-        public async Task<ActionResult<List<Order>>> GetStatus(int id)
+        public async Task<ActionResult<List<OrderDTO>>> GetStatus(int id)
         {
             return await Mediator.Send(new GetOrdersOfficeWorker.Query{});
         }

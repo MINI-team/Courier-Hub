@@ -1,3 +1,4 @@
+using Application.Mapping;
 using Application.Offers;
 using Application.Services;
 using Domain;
@@ -52,7 +53,7 @@ try
     Console.WriteLine("After migration---------------------------------------------------------------------------");
     // Seed.ClearData(context);
     // await Seed.SeedData(context);
-    // Mapping._context = context;
+    Mapping._context = context;
 }
 catch (Exception ex)
 {

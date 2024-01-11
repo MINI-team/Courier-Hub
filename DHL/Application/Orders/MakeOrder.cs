@@ -24,7 +24,10 @@ namespace Application.Orders
             public async Task<int> Handle(Query request, CancellationToken cancellationToken)
             {
                 // create Order object, insert it into database, return its id
+                Console.WriteLine("--------------------------------------");
+                Console.WriteLine(request.Order.DestinationAddress.StreetName);
                 var order = request.Order.Adapt<Order>();
+                Console.WriteLine(order.DestinationAddress.StreetName);
                 await _context.Orders.AddAsync(order);
                 await _context.SaveChangesAsync();
 

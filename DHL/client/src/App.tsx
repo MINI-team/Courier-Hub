@@ -20,9 +20,10 @@ function App() {
     <>
       <div>
         <ul>
-          {orders.map((order: any) => (
+          {orders.map((order: IOrder) => (
             <li key={order.id}>
-              {order.date}  {order.weight} g
+              {/* {order.date}  */}
+              {order.destinationCity} {order.weight} g
             </li>
           ))}
         </ul>
