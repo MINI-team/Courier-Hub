@@ -1,3 +1,4 @@
+import { Address } from "./address";
 import { IInquiry } from "./inquiry";
 
 export interface IOrder{
@@ -6,18 +7,21 @@ export interface IOrder{
     height?: number;
     weight?: number;
     date?: Date;
-    
-    sourceStreetName?: string;
-    sourceStreetNumber?: string;
-    sourceFlatNumber?: string;
-    sourceZipCode?: string;
-    sourceCity?: string;
 
-    destinationStreetName?: string;
-    destinationStreetNumber?: string;
-    destinationFlatNumber?: string;
-    destinationZipCode?: string;
-    destinationCity?: string;
+    sourceAddress: Address
+    destinationAddress: Address
+    
+    // sourceStreetName?: string;
+    // sourceStreetNumber?: string;
+    // sourceFlatNumber?: string;
+    // sourceZipCode?: string;
+    // sourceCity?: string;
+
+    // destinationStreetName?: string;
+    // destinationStreetNumber?: string;
+    // destinationFlatNumber?: string;
+    // destinationZipCode?: string;
+    // destinationCity?: string;
 
     price?: number;
 
