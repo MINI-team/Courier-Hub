@@ -51,8 +51,8 @@ try
     var context = services.GetRequiredService<DataContext>();
     await context.Database.MigrateAsync();
     Console.WriteLine("After migration---------------------------------------------------------------------------");
-    // Seed.ClearData(context);
-    // await Seed.SeedData(context);
+    await Seed.ClearData(context);
+    await Seed.SeedData(context);
     Mapping._context = context;
 }
 catch (Exception ex)

@@ -24,7 +24,7 @@ namespace Application.Orders
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
                 var order = await _context.Orders.FindAsync(request.OrderId);
-                if(order is not null && order.Status == 4)
+                if(order is not null && (order.Status == 3 || order.Status == 4))
                 {
                     order.Status = 1; // now someone else can take it
                     // var oldOrder = order.Adapt<OldOrder>();
@@ -32,10 +32,10 @@ namespace Application.Orders
                     // _context.Orders.Remove(order);
                     await _context.SaveChangesAsync();
 
-                    string destEmail = "glowacki.pj@gmail.com",
-                    subject = "Cannot deliver",
-                    message = $"I cannot deliver order {order.Id}";
-                    await _emailSender.SendEmailAsync(destEmail, subject, message);
+                    // string destEmail = "glowacki.pj@gmail.com",
+                    // subject = "Cannot deliver",
+                    // message = $"I cannot deliver order {order.Id}";
+                    // await _emailSender.SendEmailAsync(destEmail, subject, message);
                 }
                 
             }
