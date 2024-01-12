@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Orders;
-using Domain;
 using Domain.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,12 +10,12 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class GetOrdersOfficeWorkerController : BaseApiController
+    public class GetOrdersCourierController : BaseApiController
     {
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult<List<OrderDTO>>> GetOrders(int id)
         {
-            return await Mediator.Send(new GetOrdersOfficeWorker.Query{});
+            return await Mediator.Send(new GetOrdersCourier.Query{CourierId = id});
         }
     }
 }
