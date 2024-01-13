@@ -23,6 +23,8 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  top: 0;
+  position: fixed;
 }
 
 @media (prefers-color-scheme: light) {

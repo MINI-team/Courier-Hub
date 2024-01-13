@@ -77,7 +77,8 @@ function CourierComponent() {
   }
 
   return (
-    <>
+    <div>
+      <h1>DHL - Courier</h1>
       <ul>
         {orders.map((order: IOrder) => (
           <li key={order.id}>
@@ -88,7 +89,7 @@ function CourierComponent() {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   )
 }
 

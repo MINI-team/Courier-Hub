@@ -35,6 +35,7 @@ function OfficeWorkerComponent() {
 
   return (
     <>
+      <h1>DHL - Office Worker</h1>
       <ul>
         {orders.map((order: IOrder) => (
           <li key={order.id}>
