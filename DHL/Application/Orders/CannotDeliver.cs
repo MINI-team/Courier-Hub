@@ -32,10 +32,10 @@ namespace Application.Orders
                     // _context.Orders.Remove(order);
                     await _context.SaveChangesAsync();
 
-                    // string destEmail = "glowacki.pj@gmail.com",
-                    // subject = "Cannot deliver",
-                    // message = $"I cannot deliver order {order.Id}";
-                    // await _emailSender.SendEmailAsync(destEmail, subject, message);
+                    string destEmail = "glowacki.pj@gmail.com",
+                    subject = "Cannot deliver",
+                    message = $"I cannot deliver order {order.Id}";
+                    _emailSender.SendEmailAsync(destEmail, subject, message);
                 }
                 
             }

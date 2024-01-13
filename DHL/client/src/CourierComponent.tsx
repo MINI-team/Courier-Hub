@@ -18,8 +18,8 @@ function CourierComponent() {
 
   useEffect( () => {
     getOrders();
-    const intervalId = setInterval(getOrders, 1000);
-    return () => clearInterval(intervalId);
+    // const intervalId = setInterval(getOrders, 1000);
+    // return () => clearInterval(intervalId);
   }, [])
 
   const handleTake = (orderId: number) => {

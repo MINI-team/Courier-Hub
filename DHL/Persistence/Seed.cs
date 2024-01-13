@@ -47,8 +47,8 @@ namespace Persistence
                             ZipCode = $"{20000 + i}",
                             City = $"City {i + 2}"
                         },
-                        Status = 0, // Initial status
-                        CourierID = i + 1 // Assign a courier ID
+                        Status = i % 3 == 0 ? 1 : 0,
+                        CourierID = 0
                     };
 
                     context.Set<Order>().Add(order);

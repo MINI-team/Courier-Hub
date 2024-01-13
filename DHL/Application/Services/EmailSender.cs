@@ -7,24 +7,42 @@ namespace Application.Services
 {
     public class EmailSender : IEmailSender
     {
-        public async Task SendEmailAsync(string email, string subject, string message)
+        public Task SendEmailAsync(string email, string subject, string messageText)
         {
-            var ourEmail = "marysiagwiazda0@gmail.com";
+            Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine($"{email} {subject} {messageText}");
+            // var ourEmail = "marysiagwiazda0@gmail.com";
+            var ourEmail = "courier-hub@outlook.com";
             // var pw = "stachson";
-            var pw = ConvertToSecureString("stachson");
-            var client = new SmtpClient("smtp.gmail.com", 587)
+            var pw = ConvertToSecureString("Stachson");
+            // var pw = ConvertToSecureString("stachson");
+            // var client = new SmtpClient("smtp.gmail.com", 587)
+            var client = new SmtpClient("smtp-mail.outlook.com", 587)
             {
                 EnableSsl = true,
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(ourEmail, pw)
             };
+
+            Console.WriteLine("client established");
+
+            // MailAddress from = new MailAddress(ourEmail,
+            //    "Marysia " + (char)0xD8+ " Gwiazda",
+            // System.Text.Encoding.UTF8);
+            // MailAddress to = new MailAddress(email);
+            // MailMessage message = new MailMessage(from, to);
+            // message.Subject = subject;
+            // message.Body = messageText;
+
+            // client.Send(message);
+            // // client.SendAsync(message, "userToken");
             
-            await client.SendMailAsync(
+            return client.SendMailAsync(
                 new MailMessage(from: ourEmail,
                                 to: email,
                                 subject,
-                                message
-                                ));
+                                messageText
+            ));
         }
 
         private SecureString ConvertToSecureString(string password)
