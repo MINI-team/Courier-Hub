@@ -72,7 +72,7 @@ class FormComponent extends React.Component<{}, IState> {
 
   render() {
     return (
-      <div>
+      <div data-testid="form-page">
         {this.state.submitted ? 
           <div style={{marginTop: '10%'}}>
             <h1>Form submitted</h1>

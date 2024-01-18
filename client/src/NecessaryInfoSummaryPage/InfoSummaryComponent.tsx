@@ -50,7 +50,7 @@ function InfoSummaryComponent(){
   }, []);
 
   return(
-    <div style={{paddingLeft: '5%'}}>
+    <div data-testid="summary-page" style={{paddingLeft: '5%'}}>
       <Form>
         <h2>Basic information</h2>
         <Form.Group>
