@@ -480,3 +480,5 @@ $RECYCLE.BIN/
 API/courierhub.db
 API/courierhub.db-wal
 API/courierhub.db-shm
+DHL/API/dhl.db-shm
+DHL/API/dhl.db-wal
