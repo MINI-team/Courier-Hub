@@ -24,6 +24,7 @@ button{
 
 .Accept{
   background-color: green;
+  margin-left: 20px;
 }
 
 .Reject{

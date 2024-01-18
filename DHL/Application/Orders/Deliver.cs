@@ -25,20 +25,13 @@ namespace Application.Orders
                 if(order is not null && order.Status == 4)
                 {
                     order.Status = 5; // useless ?
+                    order.lastTimestamp = DateTime.Now;
                     var oldOrder = order.Adapt<OldOrder>();
                     // oldOrder.Id = 0;
                     // _context.DeliveredOrders.Add(oldOrder);
                     _context.DeliveredOrders.Add(oldOrder);
                     _context.Orders.Remove(order);
                     await _context.SaveChangesAsync();
-                    // try
-                    // {
-                    //     await _context.SaveChangesAsync();
-                    // }
-                    // catch(Exception ex)
-                    // {
-                    //     Console.WriteLine(ex);
-                    // }
                 }
                 
             }

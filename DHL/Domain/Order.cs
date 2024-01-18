@@ -18,5 +18,6 @@ namespace Domain
         public Address DestinationAddress { get; set; }
         public int Status { get; set; }
         public int CourierID { get; set; }
+        public DateTime lastTimestamp { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace Application.Orders
                 if(order is not null && order.Status == 3)
                 {
                     order.Status = 4;
+                    order.lastTimestamp = DateTime.Now;
                 }
                 await _context.SaveChangesAsync();
             }

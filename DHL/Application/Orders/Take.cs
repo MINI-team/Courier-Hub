@@ -25,6 +25,7 @@ namespace Application.Orders
                 {
                     order.CourierID = request.CourierID;
                     order.Status = 3;
+                    order.lastTimestamp = DateTime.Now;
                 }
                 await _context.SaveChangesAsync();
             }

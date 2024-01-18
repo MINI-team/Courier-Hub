@@ -21,5 +21,20 @@ namespace Application.Mapping
             orderDTO.DestinationAddress = (await _context!.Addresses.FindAsync(order!.DestinationAddressId))!;
             return orderDTO;
         }
+
+        public static void Configure()
+        {
+            Console.WriteLine("Configure====================================");
+            Console.WriteLine("Configure====================================");
+            TypeAdapterConfig<Order, OldOrder>
+            .NewConfig().Map(dest => dest.DeliveryTime, src => src.lastTimestamp);
+        }
     }
+
+    // public class OrderToOldOrderMapper : IRegister
+    // {
+    //     void IRegister.Register(TypeAdapterConfig config){
+    //         config.NewConfig<Order, OldOrder>().Map("DeliveryTime", "lastTimestamp");
+    //     }
+    // }
 }
