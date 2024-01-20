@@ -10,7 +10,7 @@ import {useHistory, useLocation} from 'react-router-dom';
 import {ErrorMessage, Formik } from 'formik';
 //import { GoogleLogin } from '@react-oauth/google';
 
-export default observer(function LoginFormComponent() {
+export default observer(function LogInFormComponent() {
     const { clientStore } = useStore();
 
     const location = useLocation();
@@ -18,6 +18,7 @@ export default observer(function LoginFormComponent() {
     const history = useHistory();
     
     return (
+        <div data-testid="login-page">
         <Formik
             initialValues={{ firstName: '',lastName: '', email: '', error: null }}
             /*onSubmit={(values, { setErrors }) =>
@@ -45,6 +46,7 @@ export default observer(function LoginFormComponent() {
             )}
 
         </Formik>
+        </div>
     )
 })
 

@@ -87,7 +87,10 @@ try
     Console.WriteLine("After migration---------------------------------------------------------------------------");
     // Seed.ClearData(context);
     await Seed.SeedData(context);
+    Console.WriteLine("After seed--------------------------------------------------------------------------");
     Mapping._context = context;
+    Console.WriteLine("Before mapping---------------------------------------------------------------------------");
+    Mapping.Mapping.Configure();
 }
 catch (Exception ex)
 {

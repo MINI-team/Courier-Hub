@@ -56,12 +56,12 @@ const LandingPage = () => {
     }, []);
     
   return (
-    <div className="landing-container">
+    <div data-testid="landing-page" className="landing-container">
         
        {/* { clientStore.isLoggedIn ? (<div id="signInDiv"/>) : (<Button onClick={clientStore.logout}>Logout</Button>)}*/}
         <div id="signInDiv"/>
       <h1>CourierHub</h1>
-      <button className="landing-button" onClick={goToForm}>
+      <button data-testid="landing-button" className="landing-button" onClick={goToForm}>
         Load Form
       </button>
     </div>
