@@ -13,7 +13,6 @@ export default function FormComponent() {
 
     const handleChangeWeekend = (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => {
         setInquiry({...inquiry, deliveredOnWeekend: !inquiry.deliveredOnWeekend})
-         // this prints the same value as the former console.log
     }
 
     const handleChangePriority = (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => {
@@ -30,7 +29,6 @@ export default function FormComponent() {
     }),[inquiry]
 
     const handleSubmit = () => {
-        // console.log(inquiry)
         history.push('/offers', {inquiry: inquiry})
     }
 
@@ -39,7 +37,7 @@ export default function FormComponent() {
             {
 
                 <div style={{ paddingLeft: '5%' }}>
-                    <Form /*onSubmit={handleSubmit}*/>
+                    <Form>
 
                         <h2>Basic information there</h2>
                         <Form.Group>
@@ -109,7 +107,3 @@ export default function FormComponent() {
         </div>
     )
 }
-
-/*
-
-*/

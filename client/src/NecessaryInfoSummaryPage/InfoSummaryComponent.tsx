@@ -1,11 +1,11 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { Form } from "semantic-ui-react";
 import axios from "axios";
-import FormComponent2 from "../InquiryForm/FormComponent2";
 import { IInquiry } from "../models/inquiry";
 import { useHistory } from "react-router-dom";
 import { IOrder } from "../models/order";
 import agent from "../api/agent";
+import FormComponent from "../InquiryForm/FormComponent";
 
 // interface Props{
 //   companyID: number;
@@ -70,7 +70,7 @@ function InfoSummaryComponent(){
         </Form.Group>
       </Form>
       <h2 style={{fontSize: 50}}>Summary:</h2>
-      {renderSummary ? <FormComponent2 inquiry={inquiry}></FormComponent2> : <></>}
+      {renderSummary ? <FormComponent inquiry={inquiry}></FormComponent> : <></>}
       <Form.Button color="green" size="massive" onClick={handleSubmit}>Submit</Form.Button>
     </div>
   )
