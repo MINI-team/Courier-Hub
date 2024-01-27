@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import FormComponent from '../InquiryForm/FormComponent';
+import FormComponent from '../InquiryForm/FormComponentLegacy';
 
 jest.mock('axios');
 

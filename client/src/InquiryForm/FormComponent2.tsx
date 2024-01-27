@@ -11,9 +11,9 @@ export default function FormComponent2({inquiry: passedInquiry}: Props){
     const [inquiry, setInquiry] = useState<IInquiry>(initialState);
     const [editMode, setEdit] = useState(false);
 
-    // useEffect(()=>{
-    //     console.log("hello from summary");
-    // })
+    useEffect(()=>{
+        console.log("hello from summary");
+    })
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
         const { name, value } = event.target;

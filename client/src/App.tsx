@@ -7,6 +7,7 @@ import LogInFormComponent from './LogInForm/LogInFormComponent';
 import InfoSummaryComponent from './NecessaryInfoSummaryPage/InfoSummaryComponent';
 import MyOrdersComponent from './MyOrders/MyOrdersComponent';
 import YourComponent from './NecessaryInfoSummaryPage/SummaryChat';
+import OffersDashboardComponent from './Offers/OffersDashboardComponent';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route path="/form" component={FormComponent} />
+        <Route path="/offers" component={OffersDashboardComponent} />
         <Route path="/summary" component={InfoSummaryComponent} />
         <Route path="/summary2" component={YourComponent} />
         <Route path="/orders" component={MyOrdersComponent} />
