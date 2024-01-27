@@ -28,10 +28,10 @@ export default function OffersDashboardComponent() {
                 });
                 setOffers(response.data);
             } catch (error) {
-
+                setCancelled(1);
                 if (axios.isCancel(error)) {
                     console.log('Request canceled: ', error.message);
-                    setCancelled(1);
+                    
                 }
                 else {
                     console.error('Error fetching offers:', error);
