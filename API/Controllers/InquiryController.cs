@@ -1,12 +1,18 @@
 using Application.Orders;
 using Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     public class InquiryController : BaseApiController
     {
-        public InquiryController() { }
+        private IMediator _mediator;
+
+        public InquiryController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
 
         [HttpGet]
         public async Task<ActionResult<List<OrderDTO>>> GetInquiries()
