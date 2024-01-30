@@ -1,16 +1,18 @@
 import axios from 'axios';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import FormComponent from '../InquiryForm/FormComponentLegacy';
+import FormComponent from '../InquiryForm/FormComponent';
 
 jest.mock('axios');
 
 describe('FormComponent', () => {
+    // unit
     test('renders FormComponent', () => {
         render(<FormComponent />);
         const formPageElement = screen.getByTestId('form-page');
         expect(formPageElement).toBeDefined();
     });
-
+    
+    // unit
     test('submits form and displays form submitted message', async () => {
         render(<FormComponent />);
         fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
@@ -19,14 +21,16 @@ describe('FormComponent', () => {
             expect(screen.getByText('Form submitted')).toBeDefined();
         });
     });
-
+    
+    // unit
     test('handles input changes properly', () => {
         render(<FormComponent />);
         const widthInput = screen.getByLabelText('Width (cm)');
         fireEvent.change(widthInput, { target: { value: '100' } });
         expect(widthInput).toBe('100');
     });
-
+    
+    // integration
     test('performs API requests on form submission', async () => {
         const mockedAxios = axios as jest.Mocked<typeof axios>;
         mockedAxios.post.mockResolvedValueOnce({ data: 'some response' });
@@ -39,7 +43,8 @@ describe('FormComponent', () => {
             expect(axios.post).toHaveBeenCalledWith('http://localhost:5000/inquiries', expect.any(Object));
         });
     });
-
+    
+    // integration
     test('performs API requests with proper data when form is submitted', async () => {
         render(<FormComponent />);
         const widthInput = screen.getByLabelText('Width (cm)');

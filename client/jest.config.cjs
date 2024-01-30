@@ -1,8 +1,8 @@
 module.exports = {
     // Ścieżki do plików, które mają zostać przetestowane
     testMatch: [
-        '<rootDir>/src/**/*.test.ts',
-        '<rootDir>/src/**/*.test.tsx',
+        "<rootDir>/src/**/*.test.ts",
+        "<rootDir>/src/**/*.test.tsx",
     ],
 
     // Ignoruj pliki testowe znajdujące się w folderze node_modules

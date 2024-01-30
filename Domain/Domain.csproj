@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.13" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.13" />
     <PackageReference Include="NUnit" Version="4.0.1" />
+    <PackageReference Include="Shouldly" Version="4.2.1" />
   </ItemGroup>
 
 </Project>

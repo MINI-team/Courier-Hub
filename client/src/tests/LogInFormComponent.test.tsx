@@ -2,6 +2,8 @@ import {fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import LogInFormComponent from '../LogInForm/LogInFormComponent';
 
+
+// integration
 describe('LoginFormComponent', () => {
     test('renders LoginFormComponent', () => {
         render(

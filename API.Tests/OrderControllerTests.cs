@@ -3,10 +3,12 @@ using API;
 using API.Controllers;
 using Application.Orders;
 using Domain;
+using FluentAssertions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 using NUnit.Framework;
+using Shouldly;
 
 namespace TestProject
 {
@@ -29,8 +31,10 @@ namespace TestProject
             var orderDTOList = new List<OrderDTO>();
             _mediator.Send(Arg.Any<List.Query>()).Returns(Task.FromResult(orderDTOList));
             ActionResult<List<OrderDTO>> result = await _orderController.GetOrders();
-            //Assert.IsNotNull(result);
-            //Assert.IsInstanceOf<List<OrderDTO>>(result.Value);
+            
+            
+            result.Should().NotBe(null);
+            result.ShouldBeOfType<List<OrderDTO>>();
         }
         
         [Test]
@@ -40,8 +44,9 @@ namespace TestProject
             IActionResult result = await _orderController.CreateOrder(newOrder);
             // sprawdzamy czy mediator byl wywolany z takim argumentem
             await _mediator.Received(1).Send(Arg.Is<Create.Command>(c => c.Order == newOrder)); 
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOf<OkResult>(result);
+            
+            result.Should().NotBe(null);
+            result.ShouldBeOfType<OkResult>();
         }
     }
 

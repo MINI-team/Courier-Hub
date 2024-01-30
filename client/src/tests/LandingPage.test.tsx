@@ -2,6 +2,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import LandingPage from '../LandigPage/LandingPage';
 
+
+// integration
 describe('LandingPage component', () => {
     test('renders LandingPage component', () => {
         render(

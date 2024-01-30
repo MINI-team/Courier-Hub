@@ -1,4 +1,4 @@
-import { Button, Grid, GridColumn, Item, ItemContent, ItemHeader, ItemMeta } from "semantic-ui-react"
+import { Button, GridColumn, Item, ItemContent, ItemHeader, ItemMeta } from "semantic-ui-react"
 import { IOffer } from "../models/offer"
 import { useHistory } from "react-router-dom"
 

@@ -90,7 +90,7 @@ try
     Console.WriteLine("After seed--------------------------------------------------------------------------");
     Mapping._context = context;
     Console.WriteLine("Before mapping---------------------------------------------------------------------------");
-    Mapping.Mapping.Configure();
+    //Mapping.Mapping.Configure();
 }
 catch (Exception ex)
 {

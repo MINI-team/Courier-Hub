@@ -2,15 +2,14 @@ using API;
 using API.Controllers;
 using Application.Orders;
 using Domain;
+using FluentAssertions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
+using Shouldly;
 
 namespace TestProject;
 
-public class InquiryControllerTests
-{
-    [TestFixture]
     public class InquiryControllerTests
     {
         private InquiryController _inquiryController;
@@ -29,9 +28,8 @@ public class InquiryControllerTests
             var orderDTOList = new List<OrderDTO>();
             _mediator.Send(Arg.Any<List.Query>()).Returns(Task.FromResult(orderDTOList));
             ActionResult<List<OrderDTO>> result = await _inquiryController.GetInquiries();
-            result.Should().BeNotNull();
-            //Assert.IsNotNull(result);
-            //Assert.IsInstanceOf<List<OrderDTO>>(result.Value);
+            result.Should().NotBe(null);
+            result.Value.ShouldBeOfType<List<OrderDTO>>();
         }
 
         [Test]
@@ -41,8 +39,8 @@ public class InquiryControllerTests
             var newOrder = new Order();
             IActionResult result = await _inquiryController.CreateInquiry(newOrder);
             await _mediator.Received(1).Send(Arg.Is<Create.Command>(c => c.Order == newOrder));
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOf<OkResult>(result);
+            
+            result.Should().NotBe(null);
+            result.ShouldBeOfType<List<OrderDTO>>();
         }
     }
-}
