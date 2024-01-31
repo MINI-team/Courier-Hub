@@ -10,6 +10,8 @@ import YourComponent from './NecessaryInfoSummaryPage/SummaryChat';
 import OffersDashboardComponent from './Offers/OffersDashboardComponent';
 import SelectedPage from './Selected/SelectedPage';
 
+
+// test comment
 function App() {
   return (
     <Router>
