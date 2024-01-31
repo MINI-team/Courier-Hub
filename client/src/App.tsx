@@ -8,6 +8,8 @@ import InfoSummaryComponent from './NecessaryInfoSummaryPage/InfoSummaryComponen
 import MyOrdersComponent from './MyOrders/MyOrdersComponent';
 import YourComponent from './NecessaryInfoSummaryPage/SummaryChat';
 
+
+// test comment
 function App() {
   return (
     <Router>
